@@ -1,0 +1,3 @@
+v 3
+d sreg for Stata
+p sreg Native Stata/Mata estimators for stratified randomized experiments

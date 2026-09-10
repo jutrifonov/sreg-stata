@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-09-10T23:19:57.908361+00:00",
+  "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
+  "r_version": "4.5.1",
+  "r_commit": "fe1b662c1e0207016eb743d46e7afa47264c5152",
+  "r_tests": 55,
+  "r_assertions": 563,
+  "native_verified": true,
+  "native_cases": 235,
+  "stata_version": "14.2",
+  "numerical_cases": 161,
+  "error_cases": 74,
+  "r_container_cases": 11,
+  "native_interface_tests": "passed",
+  "internal_helper_tests": "passed",
+  "covariance_tests": "passed",
+  "installation_tests": "passed",
+  "tolerance": "1e-8 * (1 + abs(R value))"
+}

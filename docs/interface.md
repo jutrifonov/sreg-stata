@@ -29,12 +29,13 @@ Retain the legacy `sreg, y() d() s() x() g_id() ng() hc1(true|false)` interface.
 Reject conflicting primary and legacy specifications rather than silently
 choosing one. Final option abbreviation rules require parser tests.
 
-Implement as an eclass command, with e(b), the full e(V), e(sample), design and
-sample metadata, and replay. Verify lincom/test inference against the intended
-asymptotic reference distribution. Do not invent off-diagonal covariances if
-R's public result omits them; implement and validate the underlying formulas.
+Implemented as an eclass command, with e(b), the full e(V), e(sample), design
+and sample metadata, and replay. lincom/test use normal-reference inference.
+Off-diagonal covariances use the bilinear versions of the underlying formulas
+and are checked in analytic covariance tests; see estimators.md.
 
-Factor-variable covariates are planned. Sample filtering, missing observations,
-empty arms, collinearity and cluster/stratum consistency need explicit rules
-and tests before implementation is considered stable. Audit R behavior first;
-document any intentional Stata interface differences.
+Factor-variable covariates are implemented. Sample filtering, missing
+observations, empty arms, collinearity and cluster/stratum consistency have
+native tests. Intentional Stata interface differences are documented in
+estimators.md, including undefined-inference errors and cluster row-order
+invariance.

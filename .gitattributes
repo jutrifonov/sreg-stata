@@ -1,0 +1,2 @@
+# Preserve the reference package byte-for-byte, including its whitespace.
+tests/upstream/** -whitespace

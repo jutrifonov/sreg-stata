@@ -1,5 +1,10 @@
 # Native port plan
 
+Estimator/output milestone: implemented and locally verified. See
+`tests/results/latest.md` for the results and `tests/parity/coverage.md` for
+the per-test mapping. The native generator and its native tests remain
+pending before the full package port can be considered complete.
+
 1. Audit pinned R source, all tests, examples, help and exported functionality.
 2. Establish a working R baseline and licensed Stata batch test runner.
 3. Translate validation and implement the agreed parser/sample handling.

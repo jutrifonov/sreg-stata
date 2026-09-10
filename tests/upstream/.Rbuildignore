@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^cran-comments\.md$
+^README\.Rmd$
+^doc$
+^Meta$
+^CRAN-SUBMISSION$
+^revdep$
+^\.lintr$
+^sim_results$
+^sreg-reference-manual.*\.pdf$
