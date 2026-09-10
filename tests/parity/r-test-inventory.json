@@ -1,0 +1,403 @@
+{
+  "r_commit": "fe1b662c1e0207016eb743d46e7afa47264c5152",
+  "test_files": [
+    "tests/testthat/test-cluster-large-variance.R",
+    "tests/testthat/test-cluster-mixed-components.R",
+    "tests/testthat/test-cluster-small-correction.R",
+    "tests/testthat/test-core.R",
+    "tests/testthat/test-design-classifier-warning.R",
+    "tests/testthat/test-general-k-mixed.R",
+    "tests/testthat/test-mixed-adjustment-validation.R",
+    "tests/testthat/test-rgen-covariate-output.R",
+    "tests/testthat/test-rgen-large-custom.R",
+    "tests/testthat/test-rgen-mixed.R",
+    "tests/testthat.R"
+  ],
+  "tests": [
+    {
+      "r_file": "tests/testthat/test-cluster-large-variance.R",
+      "r_line": 1,
+      "test": "cluster large-strata variance includes clusters in other treatment arms",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-mixed-components.R",
+      "r_line": 10,
+      "test": "mixed cluster weights use supplied cluster population sizes",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-mixed-components.R",
+      "r_line": 38,
+      "test": "mixed cluster weights infer cluster sizes from available observations",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-mixed-components.R",
+      "r_line": 58,
+      "test": "mixed cluster adjustment is applied to both components",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-mixed-components.R",
+      "r_line": 73,
+      "test": "mixed cluster variance uses cluster-level component-share variation",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-small-correction.R",
+      "r_line": 1,
+      "test": "small-strata cluster point estimator uses expanded outcomes and a common denominator",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-small-correction.R",
+      "r_line": 29,
+      "test": "small-strata cluster inference supports multiple arms",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-small-correction.R",
+      "r_line": 56,
+      "test": "binary small-strata variance is the multi-arm formula with two arms",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-cluster-small-correction.R",
+      "r_line": 73,
+      "test": "small-strata cluster adjustment works when cluster sizes are inferred",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1,
+      "test": "simulations without clusters work",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 176,
+      "test": "simulations with clusters work",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 511,
+      "test": "One or more covariates do not vary within one or more stratum-treatment combinations while small.strata = FALSE",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 564,
+      "test": "individual level X warning works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 586,
+      "test": "no cluster sizes warning works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 607,
+      "test": "data contains one or more NA (or NaN) values warning works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 689,
+      "test": "skipped values in range of S/D works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 737,
+      "test": "non cluster-level error for S, D, Ng works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 814,
+      "test": "empirical example works",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 858,
+      "test": "dgp.po warning work",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 870,
+      "test": "data: small strata, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 931,
+      "test": "data: large strata, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 965,
+      "test": "data: small strata, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1107,
+      "test": "data: large strata, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1150,
+      "test": "data: mixed design, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1243,
+      "test": "data: mixed design, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1438,
+      "test": "data: small strata, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1510,
+      "test": "data: large strata, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1583,
+      "test": "data: small strata, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1704,
+      "test": "data: large strata, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1742,
+      "test": "data: mixed design, option: small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 1890,
+      "test": "data: mixed design, option: large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 2073,
+      "test": "print.sreg outputs expected information for large strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 2203,
+      "test": "print.sreg outputs expected information for small strata",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-core.R",
+      "r_line": 2438,
+      "test": "plot.sreg works and returns ggplot object",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-design-classifier-warning.R",
+      "r_line": 1,
+      "test": "mixed-design warning reports the detected individual-level k",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-design-classifier-warning.R",
+      "r_line": 25,
+      "test": "mixed-design warning detects k from cluster counts",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-design-classifier-warning.R",
+      "r_line": 45,
+      "test": "fewer than 25 percent at one size does not produce a mixed warning",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-general-k-mixed.R",
+      "r_line": 1,
+      "test": "sreg estimates individual-level mixed designs with 4-tuples",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-general-k-mixed.R",
+      "r_line": 22,
+      "test": "sreg estimates cluster-level mixed designs with 4-tuples",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-general-k-mixed.R",
+      "r_line": 45,
+      "test": "general k must be supplied when automatic detection cannot identify it",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-general-k-mixed.R",
+      "r_line": 65,
+      "test": "explicit k works for uniform k-tuple designs and is validated",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
+      "r_line": 37,
+      "test": "individual mixed adjustment is applied to both components",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
+      "r_line": 55,
+      "test": "individual mixed adjustment reports unidentified large regressions",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
+      "r_line": 68,
+      "test": "cluster mixed adjustment reports unidentified large regressions",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
+      "r_line": 81,
+      "test": "unadjusted mixed estimation remains available after adjustment failure",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-covariate-output.R",
+      "r_line": 1,
+      "test": "is.cov controls covariate columns in large-strata cluster designs",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-large-custom.R",
+      "r_line": 1,
+      "test": "large-strata custom DGP defaults preserve generated data",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-large-custom.R",
+      "r_line": 17,
+      "test": "large-strata generator accepts stratum-specific allocations",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-large-custom.R",
+      "r_line": 42,
+      "test": "large-strata generator applies custom outcome effects",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-large-custom.R",
+      "r_line": 72,
+      "test": "custom large-strata arguments are validated",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-mixed.R",
+      "r_line": 1,
+      "test": "sreg.rgen generates mixed individual-level designs",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-mixed.R",
+      "r_line": 23,
+      "test": "sreg.rgen generates mixed cluster-level designs",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-mixed.R",
+      "r_line": 47,
+      "test": "mixed sreg.rgen validates its component sizes",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-mixed.R",
+      "r_line": 64,
+      "test": "existing sreg.rgen calls retain their behavior",
+      "stata_tests": [],
+      "status": "pending"
+    },
+    {
+      "r_file": "tests/testthat/test-rgen-mixed.R",
+      "r_line": 75,
+      "test": "mixed sreg.rgen derives an allocation when treat.sizes is omitted",
+      "stata_tests": [],
+      "status": "pending"
+    }
+  ]
+}

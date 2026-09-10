@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/jutrifonov/sreg",
+  "commit": "fe1b662c1e0207016eb743d46e7afa47264c5152",
+  "version": "2.1.0",
+  "pinned_on": "2026-09-10",
+  "public_exports": [
+    "sreg",
+    "sreg.rgen"
+  ],
+  "s3_methods": [
+    "print.sreg",
+    "plot.sreg"
+  ]
+}
