@@ -1,5 +1,9 @@
 # R-to-Stata test audit
 
+**Historical audit.** The diagnostic/output and assertion-mapping gaps below
+were subsequently addressed; see [current assertion verification](assertion-parity.md).
+The numerical and Monte Carlo measurements below remain a dated snapshot.
+
 Audit snapshot: 2026-09-11 UTC, verification run 2026-09-11T04:49:05.191704+00:00.
 
 The R reference is sreg 2.1.0 at fe1b662c1e0207016eb743d46e7afa47264c5152.

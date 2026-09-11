@@ -1,0 +1,12 @@
+{
+  "rejected_mutations": [
+    "wrong error reason with original nonzero code",
+    "wrong error return code",
+    "wrong printed sample count",
+    "wrong adjusted/unadjusted title",
+    "missing required warning",
+    "unexpected warning category",
+    "wrong warning wording with correct category",
+    "wrong detected k"
+  ]
+}

@@ -30,11 +30,11 @@ report={'verification_timestamp':verification['timestamp_utc'],
         'r_cases':verification['r_tests'],'r_assertions':len(expectations),
         'r_expectation_types':dict(Counter(x['expectation'] for x in expectations)),
         'stata_replay_cases':len(parity),'stata_replay_kinds':dict(Counter(x['kind'] for x in parity)),
-        'stata_additional_suites':['internal helpers','native interface and plots','analytic covariance','generator','installation'],
+        'stata_additional_suites':['internal helpers','native interface and plots','analytic covariance','generator','installation','assertion diagnostics and structure'],
         'scalar_numerical_comparisons':len(rows),'numerical_metrics':metrics,
         'r_print_text_expectations':sum(x['test'].startswith('print.sreg') and 'grepl(' in x['source'] for x in expectations),
         'case_mapping_note':'R cases are uniquely identified by execution order; repeated descriptions do not merge cases.',
-        'coverage_limit':'A case-level mapping is not a one-to-one implementation of every R expectation. Error replay checks nonzero return codes; print-text, ggplot class and R containers have partial or native equivalents.',
+        'coverage_limit':'Every original expectation has an executed check or explicit native adaptation; see assertion-results.json. Native output formatting, R containers, warning multiplicity/order, and RNG streams are deliberately adapted.',
         'rng_note':'Estimator replay uses identical R-generated inputs in Stata. Independently generated R/Stata samples are not expected to match numerically.'}
 assert all(x['passed']=='1' for x in parity)
 assert all(r['scaled_error']<=1e-8 for r in rows)

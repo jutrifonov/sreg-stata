@@ -1,11 +1,22 @@
 {
-  "timestamp_utc": "2026-09-11T04:49:05.191704+00:00",
+  "timestamp_utc": "2026-09-11T15:14:06.817853+00:00",
   "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
   "r_version": "4.5.1",
   "r_commit": "fe1b662c1e0207016eb743d46e7afa47264c5152",
   "r_tests": 55,
   "r_assertions": 563,
   "native_verified": true,
+  "original_assertions_accounted": 563,
+  "assertion_modes": {
+    "native-semantic": 197,
+    "direct-original-expectation": 245,
+    "native-interface-adaptation": 44,
+    "native-format-adaptation": 42,
+    "native-generator-adaptation": 35
+  },
+  "diagnostic_cases": 235,
+  "printed_field_checks": 1439,
+  "assertion_tests": "passed",
   "native_cases": 235,
   "stata_version": "14.2",
   "numerical_cases": 161,

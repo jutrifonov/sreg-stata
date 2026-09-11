@@ -56,6 +56,16 @@ real scalar sreg_modal(real colvector sizes, real scalar k)
     return(modal)
 }
 
+// Common classifier used both by estimation and its direct native tests.
+real colvector sreg_classify(real colvector sizes, real scalar k)
+{
+    real scalar modal
+    modal=sreg_modal(sizes,k)
+    if(rows(uniqrows(sort(sizes,1)))>1)
+        sreg_warn(sprintf("Mixed design detected: at least 25%% of all strata have the same size (k = %g). Weighted estimators will be used.",modal))
+    return(sizes:==modal)
+}
+
 real colvector sreg_slope(real colvector y, real matrix X)
 {
     real matrix Z
@@ -235,9 +245,9 @@ struct sreg_result scalar sreg_fit(real colvector T, real colvector S,
         if(k!=. & k!=us[1]) sreg_fail("The supplied small-stratum size k does not match the observed stratum size.")
         return(sreg_small(T,S,D,N,X,hc,cluster))
     }
-    modal=sreg_modal(sizes,k)
-    sreg_warn(sprintf("Mixed design detected: at least 25%% of all strata have the same size (k = %g). Weighted estimators will be used.",modal))
-    flag=sizes[S]:==modal; il=selectindex(flag); ih=selectindex(!flag)
+    flag=sreg_classify(sizes,k)
+    modal=min(select(sizes,flag))
+    flag=flag[S]; il=selectindex(flag); ih=selectindex(!flag)
     lo=sreg_small(T[il],sreg_ids(S[il]),D[il],N[il],X[il,.],hc,cluster)
     if(cols(X)) {
         for(s=1;s<=h;s++) if(sizes[s]!=modal) for(j=0;j<=max(D);j++) {

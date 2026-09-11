@@ -4,8 +4,9 @@ Every original R test is retained unchanged and passes in the reference run.
 The table distinguishes replayed estimator calls, direct native helper tests,
 and native generator design/distribution translations. It does not
 claim a literal Stata translation of every R assertion or output string.
-See [the assertion audit](../results/test-audit.md) for concrete remaining
-gaps, including printed output, diagnostic specificity, and warning checks.
+All 563 expectations now have executable dispositions; see
+[assertion-level verification](../results/assertion-parity.md) for the exact
+checks and explicit native interface/format/RNG adaptations.
 
 The generated parity suite verifies numerical inference, warnings and output
 metadata. Native tests cover parser/container equivalents, replay, factor

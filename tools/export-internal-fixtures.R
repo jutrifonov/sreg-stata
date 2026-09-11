@@ -10,8 +10,12 @@ library(testthat)
     result
 }
 assignInNamespace("as.var.creg",.capturevar,"sreg")
+.legacy_bounds <- numeric()
+trace(testthat::expect_gt,exit=quote(.GlobalEnv$.legacy_bounds <- c(.GlobalEnv$.legacy_bounds,expected)),print=FALSE)
 testthat::test_file("tests/upstream/tests/testthat/test-cluster-large-variance.R",
     env=new.env(parent=asNamespace("sreg")),reporter="summary",stop_on_failure=TRUE)
+untrace(testthat::expect_gt)
+stopifnot(length(.legacy_bounds)==length(.internal_calls))
 lines <- c('clear all','set more off','quietly do ado/sreg_mata.mata')
 for(j in seq_along(.internal_calls)) {
     r <- .internal_calls[[j]]; f <- r$fit; n <- length(f$Ng)
@@ -23,7 +27,8 @@ for(j in seq_along(.internal_calls)) {
     lines <- c(lines,sprintf('import delimited using "%s", clear case(preserve) asdouble',file),
         'mata: z=st_data(.,tokens("T S D N mu0 mu1 pi0 pi1"))',
         sprintf('mata: VV=sreg_large_variance(z[,1],z[,2],z[,3],z[,4],(z[,5],z[,6],J(rows(z),1,0)),(z[,7],z[,8],J(rows(z),1,1/3)),(%s),%d)',sprintf('%.17g',f$tau.hat),r$hc),
-        sprintf('mata: assert(abs(sqrt(VV[1,1])-(%.17g))<1e-12)',r$se))
+        sprintf('mata: assert(abs(sqrt(VV[1,1])-(%.17g))<1e-12)',r$se),
+        sprintf('mata: assert(sqrt(VV[1,1]) > %.17g)',.legacy_bounds[j]))
 }
 .small_calls <- list()
 .origtau <- get("tau.hat.creg.ss",asNamespace("sreg"))
@@ -62,7 +67,11 @@ for(j in seq_along(.small_calls)) {
         paste('sreg Y',paste(xn,collapse=" "),', treatment(D) strata(S) cluster(G_id) smallstrata',opts,if(r$hc) '' else 'nohc1'))
     values <- if(is.null(r$b)) r$se else r$b
     type <- if(is.null(r$b)) "_se" else "_b"
-    for(k in seq_along(values)) lines <- c(lines,sprintf('assert abs(%s[tau%d]-(%.17g))<1e-10',type,k,values[k]))
+    lines <- c(lines,sprintf('mata: assert(cols(st_matrix("e(b)"))==%d)',length(values)))
+    for(k in seq_along(values)) {
+        lines <- c(lines,sprintf('assert abs(%s[tau%d]-(%.17g))<1e-10',type,k,values[k]))
+        if(type=='_se') lines <- c(lines,sprintf('assert _se[tau%d]>0 & _se[tau%d]<.',k,k))
+    }
 }
 lines <- c(lines,
     '* Direct translations of the three upstream design-classifier tests.',

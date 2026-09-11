@@ -1,5 +1,5 @@
 {
-  "verification_timestamp": "2026-09-11T04:49:05.191704+00:00",
+  "verification_timestamp": "2026-09-11T15:14:06.817853+00:00",
   "r_cases": 55,
   "r_assertions": 563,
   "r_expectation_types": {
@@ -24,7 +24,8 @@
     "native interface and plots",
     "analytic covariance",
     "generator",
-    "installation"
+    "installation",
+    "assertion diagnostics and structure"
   ],
   "scalar_numerical_comparisons": 4070,
   "numerical_metrics": {
@@ -161,6 +162,6 @@
   },
   "r_print_text_expectations": 153,
   "case_mapping_note": "R cases are uniquely identified by execution order; repeated descriptions do not merge cases.",
-  "coverage_limit": "A case-level mapping is not a one-to-one implementation of every R expectation. Error replay checks nonzero return codes; print-text, ggplot class and R containers have partial or native equivalents.",
+  "coverage_limit": "Every original expectation has an executed check or explicit native adaptation; see assertion-results.json. Native output formatting, R containers, warning multiplicity/order, and RNG streams are deliberately adapted.",
   "rng_note": "Estimator replay uses identical R-generated inputs in Stata. Independently generated R/Stata samples are not expected to match numerically."
 }

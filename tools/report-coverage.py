@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
 """Write a reviewable coverage map from a successful local verification run."""
 import csv
+from collections import Counter
 import json
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 report = json.loads((root / '.build/verification.json').read_text())
+for suite in ('parity','internal','native','covariance','generator','install','assertions'):
+    assert (root / '.build' / (suite+'.done')).exists(), f'Missing completion: {suite}'
 if not report['native_verified'] or report.get('generator_tests') != 'passed':
     raise SystemExit('Full native verification is required before recording coverage')
 with (root / '.build/fixture-manifest.csv').open() as f:
     calls = list(csv.DictReader(f))
 inventory_path = root / 'tests/parity/r-test-inventory.json'
 inventory = json.loads(inventory_path.read_text())
+assert report.get('assertion_tests') == 'passed', 'Full assertion verification is required'
+assertions = json.loads((root / '.build/assertion-results.json').read_text())
 rows = []
 generator_cases = 0
 for test_id, test in enumerate(inventory['tests'], 1):
@@ -19,7 +24,10 @@ for test_id, test in enumerate(inventory['tests'], 1):
     matches = [c for c in calls if int(c['test_id']) == test_id]
     assert all(c['file'] == filename and c['test'] == test['test'] for c in matches), test
     test['test_id'] = test_id
-    test['assertion_parity'] = 'not individually certified'
+    mapped = [a for a in assertions['assertions_detail'] if a['test_id'] == test_id]
+    assert mapped and all(a['status'] == 'passed' for a in mapped)
+    test['assertion_parity'] = 'verified-native-or-adapted'
+    test['assertion_modes'] = dict(Counter(a['mode'] for a in mapped))
     exported = [c['id'] for c in matches if c['status'] == 'exported']
     generator = filename.startswith('test-rgen') or test['test'] == 'dgp.po warning work'
     test['r_baseline'] = 'passed'
@@ -53,8 +61,9 @@ Every original R test is retained unchanged and passes in the reference run.
 The table distinguishes replayed estimator calls, direct native helper tests,
 and native generator design/distribution translations. It does not
 claim a literal Stata translation of every R assertion or output string.
-See [the assertion audit](../results/test-audit.md) for concrete remaining
-gaps, including printed output, diagnostic specificity, and warning checks.
+All 563 expectations now have executable dispositions; see
+[assertion-level verification](../results/assertion-parity.md) for the exact
+checks and explicit native interface/format/RNG adaptations.
 
 The generated parity suite verifies numerical inference, warnings and output
 metadata. Native tests cover parser/container equivalents, replay, factor
@@ -69,6 +78,8 @@ dest = root / 'tests/results'
 dest.mkdir(exist_ok=True)
 audit = json.loads((root / '.build/test-audit.json').read_text())
 assert audit['verification_timestamp'] == report['timestamp_utc']
+for name in ('assertion-results.json','diagnostic-results.json','diagnostic-negative-controls.json'):
+    (dest / name).write_text((root / '.build' / name).read_text())
 (dest / 'test-audit.json').write_text(json.dumps(audit, indent=2) + '\n')
 (dest / 'verification.json').write_text(json.dumps(report, indent=2) + '\n')
 (dest / 'latest.md').write_text(f'''# Verification report
@@ -80,6 +91,8 @@ R reference: `{report['r_commit']}` (sreg 2.1.0).
 Verified using R {report['r_version']} and licensed Stata {report['stata_version']}.
 Platform: {report['platform']}.
 
+- Original expectation dispositions: **563 passed**, including direct checks and explicit native adaptations.
+- Error reasons/codes, warning text/sets, printed fields, and eight negative controls: passed.
 - Original R suite: **{report['r_tests']} test cases, {report['r_assertions']} assertions passed**.
 - R documentation examples: executed and included in captured estimator calls.
 - Native replay suite: **{report['native_cases']} passed** ({report['numerical_cases']} numerical cases,
@@ -106,9 +119,8 @@ R cases. R and Stata use different random streams; no identical-seed parity
 is claimed. See [generator adaptations](../../docs/generator.md) for intentional
 edge-case fixes and [the coverage map](../parity/coverage.md) for the mapping.
 The plotting command uses native Stata styles instead of reproducing every
-R styling argument. See [the assertion audit](test-audit.md) for the remaining
-assertion-level gaps; the case map is not a claim that every R expectation
-has been translated. This local report does not claim that hosted CI ran
+R styling argument. See [assertion-level verification](assertion-parity.md)
+for the per-expectation checks and the explicit native adaptations. This local report does not claim that hosted CI ran
 licensed Stata or that every R-specific object assertion has a literal port.
 ''')
 print(f'Updated coverage for {len(rows)} R tests; {generator_cases} include verified native generator scope.')

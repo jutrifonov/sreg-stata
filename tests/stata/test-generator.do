@@ -20,13 +20,25 @@ foreach cl in individual clustered {
         bysort S D: egen arm = total(tag)
         assert arm==1 if S<=30
         assert units==3 if S<=30
-        drop tag units arm
+        egen stag = tag(S)
+        count if stag & units==3
+        assert r(N)==30
+        count if stag & units>3
+        assert r(N)>0
+        drop tag units arm stag
         quietly sreg Y, treatment(D) strata(S) cluster(G_id) clustersize(Ng) smallstrata k(3)
     }
     else {
         assert _N==120
         bysort S: assert _N==3 if S<=30
         bysort S D: assert _N==1 if S<=30
+        bysort S: gen units=_N
+        egen stag = tag(S)
+        count if stag & units==3
+        assert r(N)==30
+        count if stag & units>3
+        assert r(N)>0
+        drop units stag
         quietly sreg Y, treatment(D) strata(S) smallstrata k(3)
     }
     assert "`e(design)'"=="mixed design"

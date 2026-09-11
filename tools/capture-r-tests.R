@@ -16,6 +16,7 @@ grDevices::pdf(file.path(root,".build/r-plots.pdf"))
 .capture$file <- ""
 .capture$test <- ""
 .capture$test_id <- 0L
+.capture$assertion_links <- list()
 .original_sreg <- sreg::sreg
 .record_sreg <- function(Y, S=NULL, D, G.id=NULL, Ng=NULL, X=NULL,
                          HC1=TRUE, small.strata=FALSE, k=NULL) {
@@ -37,6 +38,11 @@ unlockBinding("sreg", as.environment("package:sreg"))
 assign("sreg", .record_sreg, as.environment("package:sreg"))
 lockBinding("sreg", as.environment("package:sreg"))
 trace(testthat::test_that, tracer=quote({ .GlobalEnv$.capture$test <- desc; .GlobalEnv$.capture$test_id <- .GlobalEnv$.capture$test_id + 1L }),print=FALSE)
+trace(testthat:::exp_signal, tracer=quote({
+    .GlobalEnv$.capture$assertion_links[[length(.GlobalEnv$.capture$assertion_links)+1L]] <-
+        list(test_id=.GlobalEnv$.capture$test_id,call_id=length(.GlobalEnv$.capture$calls),
+             line=as.integer(exp$srcref)[1])
+}), print=FALSE)
 testenv <- new.env(parent=asNamespace("sreg"))
 results <- list()
 for (f in sort(list.files(file.path(root,"tests/upstream/tests/testthat"),
@@ -46,6 +52,8 @@ for (f in sort(list.files(file.path(root,"tests/upstream/tests/testthat"),
                                                stop_on_failure=FALSE)
 }
 untrace(testthat::test_that)
+untrace(testthat:::exp_signal)
+saveRDS(.capture$assertion_links,file.path(root,".build/captured/assertion-links.rds"))
 example_env <- new.env(parent=globalenv())
 for(topic in c("sreg","sreg.rgen","print.sreg","plot.sreg")) {
     .capture$test_id <- 0L

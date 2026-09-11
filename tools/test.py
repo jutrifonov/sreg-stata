@@ -84,12 +84,23 @@ def main():
     if len(parity) != expected or any(r['passed'] != '1' for r in parity):
         failed = [r['id'] for r in parity if r['passed'] != '1']
         raise RuntimeError(f'Parity failures: {failed}; completed {len(parity)}/{expected}')
+    run([sys.executable, 'tools/verify-diagnostics.py'], 'diagnostics.log')
+    run([sys.executable, 'tools/test-diagnostic-checker.py'], 'diagnostic-negative-controls.log')
     stata_run(binary, '.build/internal.do', 'internal.done')
     stata_run(binary, 'tests/stata/test-native.do', 'native.done')
     stata_run(binary, 'tests/stata/test-covariance.do', 'covariance.done')
     stata_run(binary, 'tests/stata/test-generator.do', 'generator.done')
     stata_run(binary, 'tests/stata/test-install.do', 'install.done')
-    report.update(native_verified=True, native_cases=len(parity),
+    stata_run(binary, 'tests/stata/test-assertions.do', 'assertions.done')
+    run([sys.executable, 'tools/verify-assertions.py'], 'assertion-verification.log')
+    assertion_report = json.loads((BUILD / 'assertion-results.json').read_text())
+    diagnostic_report = json.loads((BUILD / 'diagnostic-results.json').read_text())
+    report.update(native_verified=True,
+                  original_assertions_accounted=assertion_report['assertions'],
+                  assertion_modes=assertion_report['modes'],
+                  diagnostic_cases=diagnostic_report['cases'],
+                  printed_field_checks=diagnostic_report['printed_field_checks'],
+                  assertion_tests='passed', native_cases=len(parity),
                   stata_version=(BUILD / 'stata-version.txt').read_text().strip(),
                   numerical_cases=sum(r['kind'] == 'numerical' for r in parity),
                   error_cases=sum(r['kind'] == 'error' for r in parity),

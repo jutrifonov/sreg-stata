@@ -25,7 +25,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 1,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -41,7 +44,10 @@
         1
       ],
       "test_id": 2,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -57,7 +63,10 @@
         2
       ],
       "test_id": 3,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -73,7 +82,10 @@
         3
       ],
       "test_id": 4,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -89,7 +101,10 @@
         4
       ],
       "test_id": 5,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -102,7 +117,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 6,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -119,7 +137,10 @@
         6
       ],
       "test_id": 7,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 8
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -132,7 +153,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 8,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -151,7 +175,10 @@
         10
       ],
       "test_id": 9,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 6
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -189,7 +216,12 @@
         33
       ],
       "test_id": 10,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 8,
+        "native-semantic": 16,
+        "native-interface-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -253,7 +285,12 @@
         82
       ],
       "test_id": 11,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 12,
+        "native-semantic": 23,
+        "native-interface-adaptation": 20
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -271,7 +308,10 @@
         85
       ],
       "test_id": 12,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -287,7 +327,10 @@
         86
       ],
       "test_id": 13,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -303,7 +346,10 @@
         87
       ],
       "test_id": 14,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -326,7 +372,10 @@
         95
       ],
       "test_id": 15,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 8
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -344,7 +393,10 @@
         98
       ],
       "test_id": 16,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -368,7 +420,11 @@
         107
       ],
       "test_id": 17,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-interface-adaptation": 2,
+        "native-semantic": 7
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -387,7 +443,11 @@
         111
       ],
       "test_id": 18,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 4,
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -401,7 +461,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 19,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-interface-adaptation": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -425,7 +488,11 @@
         120
       ],
       "test_id": 20,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 12,
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -445,7 +512,10 @@
         125
       ],
       "test_id": 21,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 10
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -468,7 +538,12 @@
         133
       ],
       "test_id": 22,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 8,
+        "native-semantic": 14,
+        "native-interface-adaptation": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -488,7 +563,10 @@
         138
       ],
       "test_id": 23,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 5
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -511,7 +589,11 @@
         146
       ],
       "test_id": 24,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 6,
+        "native-semantic": 5
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -537,7 +619,12 @@
         157
       ],
       "test_id": 25,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 12,
+        "native-semantic": 7,
+        "native-interface-adaptation": 5
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -562,7 +649,11 @@
         167
       ],
       "test_id": 26,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 14,
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -586,7 +677,11 @@
         176
       ],
       "test_id": 27,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 14,
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -608,7 +703,12 @@
         183
       ],
       "test_id": 28,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 8,
+        "native-semantic": 12,
+        "native-interface-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -627,7 +727,10 @@
         187
       ],
       "test_id": 29,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -653,7 +756,12 @@
         198
       ],
       "test_id": 30,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 12,
+        "native-semantic": 6,
+        "native-interface-adaptation": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -679,7 +787,12 @@
         209
       ],
       "test_id": 31,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 14,
+        "native-semantic": 7,
+        "native-interface-adaptation": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -701,7 +814,12 @@
         216
       ],
       "test_id": 32,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 45,
+        "native-format-adaptation": 12,
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -725,7 +843,12 @@
         225
       ],
       "test_id": 33,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "direct-original-expectation": 66,
+        "native-format-adaptation": 30,
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -741,7 +864,10 @@
         226
       ],
       "test_id": 34,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-interface-adaptation": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -754,7 +880,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 35,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -767,7 +896,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 36,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -780,7 +912,10 @@
       "r_baseline": "passed",
       "captured_call_ids": [],
       "test_id": 37,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -796,7 +931,10 @@
         227
       ],
       "test_id": 38,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -812,7 +950,10 @@
         228
       ],
       "test_id": 39,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -829,7 +970,10 @@
         230
       ],
       "test_id": 40,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -847,7 +991,10 @@
         233
       ],
       "test_id": 41,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 4
+      }
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -863,7 +1010,10 @@
         234
       ],
       "test_id": 42,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -879,7 +1029,10 @@
         235
       ],
       "test_id": 43,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -895,7 +1048,10 @@
         236
       ],
       "test_id": 44,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -912,7 +1068,10 @@
         238
       ],
       "test_id": 45,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-semantic": 2
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-covariate-output.R",
@@ -926,7 +1085,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 46,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -940,7 +1102,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 47,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -954,7 +1119,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 48,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 5
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -968,7 +1136,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 49,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -982,7 +1153,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 50,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1000,7 +1174,10 @@
       ],
       "native_generator": "design-and-distribution-verified",
       "test_id": 51,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 6
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1018,7 +1195,10 @@
       ],
       "native_generator": "design-and-distribution-verified",
       "test_id": 52,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 7
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1032,7 +1212,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 53,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 3
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1046,7 +1229,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 54,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 1
+      }
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1060,7 +1246,10 @@
       "captured_call_ids": [],
       "native_generator": "design-and-distribution-verified",
       "test_id": 55,
-      "assertion_parity": "not individually certified"
+      "assertion_parity": "verified-native-or-adapted",
+      "assertion_modes": {
+        "native-generator-adaptation": 3
+      }
     }
   ]
 }

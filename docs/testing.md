@@ -80,9 +80,12 @@ not a passing native test. Local verification is recorded separately.
 
 The [audit report](../tests/results/test-audit.md) distinguishes R test cases,
 executed expectations, Stata replay cases, and supplementary native suites.
-All 55 R cases have native mappings, but this is not a certification that
-all 563 original expectations have individually equivalent Stata assertions.
-In particular, printed output and error/warning specificity have gaps.
+All 563 expectations now have executable dispositions. See
+[current assertion verification](../tests/results/assertion-parity.md): original
+rounded targets and printed patterns are checked directly where applicable;
+R-specific interfaces, formats and RNG behavior have explicit native adaptations.
+The runner requires error reasons/codes, exact native warning text and warning
+sets, printed fields, structural checks, and checker negative controls to pass.
 
 The full runner records reference/native pairs in `.build/numerical-values.csv`
 and expectation source locations in `.build/r-assertion-audit.csv`.

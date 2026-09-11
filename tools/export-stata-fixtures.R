@@ -4,7 +4,7 @@ calls <- readRDS(file.path(root,".build/captured/calls.rds"))
 dest <- file.path(root,".build/fixtures")
 dir.create(dest,recursive=TRUE,showWarnings=FALSE)
 fmt <- function(x) ifelse(is.finite(x),sprintf("%.17g",x),".")
-lines <- c('clear all','set more off','set type double','adopath ++ "ado"',
+lines <- c('clear all','set more off','set linesize 255','set type double','adopath ++ "ado"',
     'file open report using ".build/parity-results.csv", write replace',
     'file write report "id,kind,passed" _n')
 # Record actual numerical discrepancies, independently of pass/fail tolerances.
@@ -14,6 +14,8 @@ measurement <- function(id, metric, index, expr, expected) {
     sprintf('    file write numeric "%d,%s,%s,%s," %%24.17g (%s) _n',
             id, metric, index, fmt(expected), expr)
 }
+dir.create(file.path(root,".build/call-logs"),showWarnings=FALSE)
+diagnostics <- list()
 manifest <- list()
 for(call in calls) {
     x <- call$inputs
@@ -22,6 +24,23 @@ for(call in calls) {
     status <- if(!supported) "R container/type validation; covered by native parser tests" else "exported"
     manifest[[length(manifest)+1]] <- data.frame(id=call$id,file=call$file,test=call$test,test_id=call$test_id,status=status)
     if(!supported) next
+    fit <- call$result
+    diagnostics[[length(diagnostics)+1L]] <- data.frame(id=call$id,test_id=call$test_id,
+        error=if(is.null(call$error)) "" else call$error,
+        warnings=paste(call$warnings,collapse="\n"),
+        adjusted=if(is.null(fit)) FALSE else !is.null(fit$lin.adj),
+        n=if(is.null(fit)) 0 else nrow(fit$data),
+        arms=if(is.null(fit)) 0 else length(fit$tau.hat),
+        strata=if(is.null(fit)) 0 else length(unique(fit$data$S)),
+        clusters=if(is.null(fit)||is.null(fit$data$G.id)) 0 else length(unique(fit$data$G.id)),
+        k=if(is.null(fit)||!isTRUE(fit$small.strata)) 0 else {
+            data <- if(isTRUE(fit$mixed.design)) fit$res.small$data else fit$data
+            sizes <- if(is.null(data$G.id)) table(data$S) else table(unique(data[c("S","G.id")])$S)
+            as.integer(sizes[1])
+        },
+        hc=if(is.null(fit)) FALSE else isTRUE(fit$HC1),
+        design=if(is.null(fit)) "" else if(isTRUE(fit$mixed.design)) "mixed design" else if(isTRUE(fit$small.strata)) "small strata" else "large strata",
+        covariates=if(is.null(fit)||is.null(fit$lin.adj)) "" else paste(paste0("x",seq_len(ncol(as.data.frame(x$X)))),collapse=" "))
     dat <- list()
     for(nm in c("Y","S","D","G.id","Ng")) if(!is.null(x[[nm]])) dat[[gsub("\\.","_",nm)]] <- as.numeric(unlist(x[[nm]]))
     if(!is.null(x$X)) {
@@ -43,7 +62,11 @@ for(call in calls) {
     command <- paste("sreg,",paste(opts,collapse=" "))
     lines <- c(lines,sprintf('* R call %d: %s',call$id,call$test),
         sprintf('import delimited using "%s", clear case(preserve) asdouble',path),
-        paste('capture noisily',command),'local code = _rc')
+        sprintf('quietly log using ".build/call-logs/case-%04d.log", text replace name(diagnostic)',call$id),
+        paste('capture noisily',command),'local code = _rc',
+        'if `code\' == 0 matrix inference = r(table)',
+        'display "__SREG_RC__ `code\'"',
+        'quietly log close diagnostic')
     if(!is.null(call$error)) {
         lines <- c(lines,'local passed = (`code\' != 0)',sprintf('file write report "%d,error,`passed\'" _n',call$id))
         next
@@ -87,7 +110,6 @@ for(call in calls) {
         measurement(call$id,"estimate",j,sprintf("_b[tau%d]",j),fit$tau.hat[j]),
         measurement(call$id,"se",j,sprintf("_se[tau%d]",j),fit$se.rob[j]))
     # Stata displays z statistics and normal-reference p-values and intervals.
-    lines <- c(lines,'    matrix inference = r(table)')
     for(j in seq_along(fit$tau.hat)) for(pair in list(c(3,fit$t.stat[j]),c(4,fit$p.value[j]),c(5,fit$CI.left[j]),c(6,fit$CI.right[j])))
         lines <- c(lines,sprintf('    capture assert abs(inference[%d,%d]-(%s)) <= 1e-8*(1+abs(%s))',pair[1],j,fmt(pair[2]),fmt(pair[2])),
                     '    if _rc local passed = 0')
@@ -118,6 +140,16 @@ for(call in calls) {
             measurement(call$id,name,paste(i,j,sep=":"),sprintf("sb[%d,%d]",i,j),m[i,j]))
     }
     if(isTRUE(fit$mixed.design)) {
+        for (comp in c("small","big")) {
+            label <- if(comp=="small") "small" else "large"
+            dat <- fit[[paste0("res.",comp)]]$data
+            units <- if(is.null(dat$G.id)) nrow(dat) else length(unique(dat$G.id))
+            lines <- c(lines,sprintf('    capture assert e(N_%s)==%d',label,units),'    if _rc local passed = 0')
+        }
+        small_data <- fit$res.small$data; big_data <- fit$res.big$data
+        population <- function(d) if(is.null(d$G.id)) nrow(d) else sum(unique(d[c("G.id","Ng")])$Ng)
+        share <- population(small_data)/(population(small_data)+population(big_data))
+        lines <- c(lines,sprintf('    capture assert abs(e(p_small)-(%s))<1e-12',fmt(share)), '    if _rc local passed = 0')
         for(comp in c("small","big")) {
             mat <- if(comp=="small") "small" else "large"
             r <- fit[[paste0("res.",comp)]]
@@ -138,3 +170,5 @@ lines <- c(lines,'file close numeric','file close report','file open done using 
 writeLines(lines,file.path(root,".build/parity.do"))
 write.csv(do.call(rbind,manifest),file.path(root,".build/fixture-manifest.csv"),row.names=FALSE)
 cat("Exported",sum(vapply(manifest,function(x)x$status=="exported",logical(1))),"calls.\n")
+
+write.csv(do.call(rbind,diagnostics),file.path(root,".build/diagnostic-expectations.csv"),row.names=FALSE)
