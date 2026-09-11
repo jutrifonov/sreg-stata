@@ -1,0 +1,166 @@
+{
+  "verification_timestamp": "2026-09-11T04:49:05.191704+00:00",
+  "r_cases": 55,
+  "r_assertions": 563,
+  "r_expectation_types": {
+    "expect_equal": 165,
+    "expect_gt": 3,
+    "expect_false": 8,
+    "expect_length": 3,
+    "expect_true": 222,
+    "expect_error": 93,
+    "expect_warning": 47,
+    "expect_silent": 17,
+    "expect_s3_class": 1,
+    "expect_identical": 4
+  },
+  "stata_replay_cases": 235,
+  "stata_replay_kinds": {
+    "numerical": 161,
+    "error": 74
+  },
+  "stata_additional_suites": [
+    "internal helpers",
+    "native interface and plots",
+    "analytic covariance",
+    "generator",
+    "installation"
+  ],
+  "scalar_numerical_comparisons": 4070,
+  "numerical_metrics": {
+    "estimate": {
+      "comparisons": 333,
+      "max_absolute_error": 1.3322676295501878e-14,
+      "max_scaled_error": 8.549835481449015e-15,
+      "median_absolute_error": 2.220446049250313e-16,
+      "worst_call": 214,
+      "worst_index": "1",
+      "reference_at_worst": 0.5582377373703533,
+      "stata_at_worst": 0.55823773737034
+    },
+    "se": {
+      "comparisons": 333,
+      "max_absolute_error": 9.853229343548264e-16,
+      "max_scaled_error": 9.124686733881555e-16,
+      "median_absolute_error": 2.7755575615628914e-17,
+      "worst_call": 148,
+      "worst_index": "2",
+      "reference_at_worst": 0.07984302704458901,
+      "stata_at_worst": 0.07984302704459
+    },
+    "z": {
+      "comparisons": 333,
+      "max_absolute_error": 2.433608869978343e-13,
+      "max_scaled_error": 2.846926139368005e-14,
+      "median_absolute_error": 1.7763568394002505e-15,
+      "worst_call": 214,
+      "worst_index": "1",
+      "reference_at_worst": 9.24173900727922,
+      "stata_at_worst": 9.241739007278976
+    },
+    "p": {
+      "comparisons": 333,
+      "max_absolute_error": 8.770761894538737e-15,
+      "max_scaled_error": 5.538134090289059e-15,
+      "median_absolute_error": 6.223320470066795e-17,
+      "worst_call": 245,
+      "worst_index": "1",
+      "reference_at_worst": 0.984672867284597,
+      "stata_at_worst": 0.9846728672846058
+    },
+    "ci_lower": {
+      "comparisons": 333,
+      "max_absolute_error": 1.3600232051658168e-14,
+      "max_scaled_error": 9.445601779814807e-15,
+      "median_absolute_error": 2.220446049250313e-16,
+      "worst_call": 214,
+      "worst_index": "1",
+      "reference_at_worst": 0.43984812918132765,
+      "stata_at_worst": 0.43984812918131405
+    },
+    "ci_upper": {
+      "comparisons": 333,
+      "max_absolute_error": 1.2989609388114332e-14,
+      "max_scaled_error": 7.747463634371634e-15,
+      "median_absolute_error": 2.220446049250313e-16,
+      "worst_call": 214,
+      "worst_index": "1",
+      "reference_at_worst": 0.676627345559379,
+      "stata_at_worst": 0.676627345559366
+    },
+    "estimate_small": {
+      "comparisons": 57,
+      "max_absolute_error": 5.662137425588298e-15,
+      "max_scaled_error": 4.6313749088711874e-15,
+      "median_absolute_error": 1.249000902703301e-16,
+      "worst_call": 139,
+      "worst_index": "2",
+      "reference_at_worst": 0.8282886933679553,
+      "stata_at_worst": 0.828288693367961
+    },
+    "variance_small": {
+      "comparisons": 57,
+      "max_absolute_error": 2.7755575615628914e-16,
+      "max_scaled_error": 2.106964501829964e-16,
+      "median_absolute_error": 5.204170427930421e-18,
+      "worst_call": 243,
+      "worst_index": "1",
+      "reference_at_worst": 0.31907818380436387,
+      "stata_at_worst": 0.3190781838043636
+    },
+    "estimate_large": {
+      "comparisons": 57,
+      "max_absolute_error": 1.9984014443252818e-15,
+      "max_scaled_error": 9.892080247935986e-16,
+      "median_absolute_error": 4.440892098500626e-16,
+      "worst_call": 188,
+      "worst_index": "2",
+      "reference_at_worst": 1.2077536271880323,
+      "stata_at_worst": 1.2077536271880303
+    },
+    "variance_large": {
+      "comparisons": 57,
+      "max_absolute_error": 7.771561172376096e-16,
+      "max_scaled_error": 5.373006706024596e-16,
+      "median_absolute_error": 5.551115123125783e-17,
+      "worst_call": 237,
+      "worst_index": "2",
+      "reference_at_worst": 0.4464082398523848,
+      "stata_at_worst": 0.4464082398523856
+    },
+    "beta": {
+      "comparisons": 1612,
+      "max_absolute_error": 6.945555242054979e-13,
+      "max_scaled_error": 6.331237885253571e-14,
+      "median_absolute_error": 2.6645352591003757e-15,
+      "worst_call": 39,
+      "worst_index": "12:2",
+      "reference_at_worst": -11.617822432669202,
+      "stata_at_worst": -11.617822432669897
+    },
+    "beta_small": {
+      "comparisons": 52,
+      "max_absolute_error": 3.552713678800501e-14,
+      "max_scaled_error": 3.0616544688244994e-15,
+      "median_absolute_error": 2.6645352591003757e-15,
+      "worst_call": 3,
+      "worst_index": "1:2",
+      "reference_at_worst": 31.56444566468634,
+      "stata_at_worst": 31.564445664686374
+    },
+    "beta_large": {
+      "comparisons": 180,
+      "max_absolute_error": 1.4921397450962104e-13,
+      "max_scaled_error": 1.4478713494574716e-14,
+      "median_absolute_error": 3.774758283725532e-15,
+      "worst_call": 188,
+      "worst_index": "6:1",
+      "reference_at_worst": -48.07020997255016,
+      "stata_at_worst": -48.07020997255001
+    }
+  },
+  "r_print_text_expectations": 153,
+  "case_mapping_note": "R cases are uniquely identified by execution order; repeated descriptions do not merge cases.",
+  "coverage_limit": "A case-level mapping is not a one-to-one implementation of every R expectation. Error replay checks nonzero return codes; print-text, ggplot class and R containers have partial or native equivalents.",
+  "rng_note": "Estimator replay uses identical R-generated inputs in Stata. Independently generated R/Stata samples are not expected to match numerically."
+}

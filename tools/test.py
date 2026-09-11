@@ -71,6 +71,7 @@ def main():
     binary = args.stata or next((shutil.which(x) for x in ('stata-mp', 'stata-se', 'stata') if shutil.which(x)), None)
     if not binary:
         raise RuntimeError('A licensed Stata executable is required. Set STATA_BIN or --stata.')
+    run(['Rscript', 'tools/export-assertion-audit.R'], 'assertion-audit.log')
     run(['Rscript', 'tools/export-stata-fixtures.R', '.'], 'fixture-export.log')
     run(['Rscript', 'tools/export-internal-fixtures.R'], 'internal-export.log')
     run(['Rscript', 'tools/export-generator-fixtures.R'], 'generator-export.log')
@@ -97,6 +98,7 @@ def main():
                   covariance_tests='passed', installation_tests='passed', generator_tests='passed',
                   tolerance='1e-8 * (1 + abs(R value))')
     (BUILD / 'verification.json').write_text(json.dumps(report, indent=2) + '\n')
+    run([sys.executable, 'tools/audit-tests.py'], 'test-audit.log')
     print(json.dumps(report, indent=2))
 
 

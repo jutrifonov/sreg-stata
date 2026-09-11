@@ -33,7 +33,8 @@ The runner:
 6. Runs the direct internal-helper translations, native interface tests,
    plotting tests, analytic covariance tests, native generator design and
    distribution tests, and isolated package installation examples.
-7. Writes `.build/verification.json`; any required failure exits nonzero.
+7. Writes `.build/verification.json` and audits actual scalar numerical
+   differences in `.build/test-audit.json`; any required failure exits nonzero.
 
 The baseline contains 55 test cases and 563 assertions at the pinned commit.
 Before documentation examples, those tests call the public estimator 240
@@ -74,3 +75,18 @@ The GitHub workflow runs the R baseline on hosted runners. Full native tests
 can be manually dispatched to a self-hosted runner labeled `stata`, with R,
 Python and a licensed Stata already installed. Absence of such a runner is
 not a passing native test. Local verification is recorded separately.
+
+## Assertion-level audit and numerical discrepancies
+
+The [audit report](../tests/results/test-audit.md) distinguishes R test cases,
+executed expectations, Stata replay cases, and supplementary native suites.
+All 55 R cases have native mappings, but this is not a certification that
+all 563 original expectations have individually equivalent Stata assertions.
+In particular, printed output and error/warning specificity have gaps.
+
+The full runner records reference/native pairs in `.build/numerical-values.csv`
+and expectation source locations in `.build/r-assertion-audit.csv`.
+`tools/audit-tests.py` summarizes actual errors, not just tolerance bounds.
+`tools/report-coverage.py` updates the checked-in numerical JSON and mapping.
+The independent-stream Monte Carlo diagnostic is optional; its reproduction
+commands and scope are documented in the audit report.

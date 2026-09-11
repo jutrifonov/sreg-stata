@@ -1,6 +1,6 @@
 # Verification report
 
-Run timestamp (UTC): 2026-09-11T04:38:07.563298+00:00
+Run timestamp (UTC): 2026-09-11T04:49:05.191704+00:00
 
 R reference: `fe1b662c1e0207016eb743d46e7afa47264c5152` (sreg 2.1.0).
 
@@ -33,5 +33,7 @@ R cases. R and Stata use different random streams; no identical-seed parity
 is claimed. See [generator adaptations](../../docs/generator.md) for intentional
 edge-case fixes and [the coverage map](../parity/coverage.md) for the mapping.
 The plotting command uses native Stata styles instead of reproducing every
-R styling argument. This local report does not claim that hosted CI ran
+R styling argument. See [the assertion audit](test-audit.md) for the remaining
+assertion-level gaps; the case map is not a claim that every R expectation
+has been translated. This local report does not claim that hosted CI ran
 licensed Stata or that every R-specific object assertion has a literal port.

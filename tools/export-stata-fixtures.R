@@ -7,13 +7,20 @@ fmt <- function(x) ifelse(is.finite(x),sprintf("%.17g",x),".")
 lines <- c('clear all','set more off','set type double','adopath ++ "ado"',
     'file open report using ".build/parity-results.csv", write replace',
     'file write report "id,kind,passed" _n')
+# Record actual numerical discrepancies, independently of pass/fail tolerances.
+lines <- c(lines, 'file open numeric using ".build/numerical-values.csv", write replace',
+    'file write numeric "id,metric,index,reference,stata" _n')
+measurement <- function(id, metric, index, expr, expected) {
+    sprintf('    file write numeric "%d,%s,%s,%s," %%24.17g (%s) _n',
+            id, metric, index, fmt(expected), expr)
+}
 manifest <- list()
 for(call in calls) {
     x <- call$inputs
     nonnull <- x[c("Y","S","D","G.id","Ng","X")]
     supported <- all(vapply(nonnull,function(v) is.null(v)||is.numeric(v)||is.matrix(v)||is.data.frame(v),logical(1)))
     status <- if(!supported) "R container/type validation; covered by native parser tests" else "exported"
-    manifest[[length(manifest)+1]] <- data.frame(id=call$id,file=call$file,test=call$test,status=status)
+    manifest[[length(manifest)+1]] <- data.frame(id=call$id,file=call$file,test=call$test,test_id=call$test_id,status=status)
     if(!supported) next
     dat <- list()
     for(nm in c("Y","S","D","G.id","Ng")) if(!is.null(x[[nm]])) dat[[gsub("\\.","_",nm)]] <- as.numeric(unlist(x[[nm]]))
@@ -76,11 +83,19 @@ for(call in calls) {
         checks <- c(checks,sprintf('strpos(`"`e(warnings)\'"\',"%s")>0',warning_map[[pattern]]))
     lines <- c(lines,'local passed = 0','if `code\' == 0 {','    local passed = 1')
     for(check in checks) lines <- c(lines,paste('    capture assert',check),'    if _rc local passed = 0')
+    for (j in seq_along(fit$tau.hat)) lines <- c(lines,
+        measurement(call$id,"estimate",j,sprintf("_b[tau%d]",j),fit$tau.hat[j]),
+        measurement(call$id,"se",j,sprintf("_se[tau%d]",j),fit$se.rob[j]))
     # Stata displays z statistics and normal-reference p-values and intervals.
     lines <- c(lines,'    matrix inference = r(table)')
     for(j in seq_along(fit$tau.hat)) for(pair in list(c(3,fit$t.stat[j]),c(4,fit$p.value[j]),c(5,fit$CI.left[j]),c(6,fit$CI.right[j])))
         lines <- c(lines,sprintf('    capture assert abs(inference[%d,%d]-(%s)) <= 1e-8*(1+abs(%s))',pair[1],j,fmt(pair[2]),fmt(pair[2])),
                     '    if _rc local passed = 0')
+    for (j in seq_along(fit$tau.hat)) {
+        values <- c(z=fit$t.stat[j],p=fit$p.value[j],ci_lower=fit$CI.left[j],ci_upper=fit$CI.right[j])
+        for (i in seq_along(values)) lines <- c(lines,
+            measurement(call$id,names(values)[i],j,sprintf("inference[%d,%d]",i+2,j),values[i]))
+    }
     large_beta <- function(models, strata_order=seq_len(nrow(models[[1]]))) do.call(rbind,lapply(strata_order,function(s)
         do.call(rbind,lapply(models,function(m)m[s,,drop=FALSE]))))
     slopes <- list()
@@ -99,6 +114,8 @@ for(call in calls) {
         lines <- c(lines,sprintf('    matrix sb = e(%s)',name),
             sprintf('    matrix rb = (%s)',literal),
             '    capture assert mreldif(sb,rb)<1e-8','    if _rc local passed = 0')
+        for (i in seq_len(nrow(m))) for (j in seq_len(ncol(m))) lines <- c(lines,
+            measurement(call$id,name,paste(i,j,sep=":"),sprintf("sb[%d,%d]",i,j),m[i,j]))
     }
     if(isTRUE(fit$mixed.design)) {
         for(comp in c("small","big")) {
@@ -110,11 +127,14 @@ for(call in calls) {
                 '    if _rc local passed = 0',
                 sprintf('    capture assert abs(cv[%d,%d]-(%s)) <= 1e-8*(1+abs(%s))',j,j,fmt(r$se.rob[j]^2),fmt(r$se.rob[j]^2)),
                 '    if _rc local passed = 0')
+            for(j in seq_along(r$tau.hat)) lines <- c(lines,
+                measurement(call$id,paste0("estimate_",mat),j,sprintf("cb[1,%d]",j),r$tau.hat[j]),
+                measurement(call$id,paste0("variance_",mat),j,sprintf("cv[%d,%d]",j,j),r$se.rob[j]^2))
         }
     }
     lines <- c(lines,'}',sprintf('file write report "%d,numerical,`passed\'" _n',call$id))
 }
-lines <- c(lines,'file close report','file open done using ".build/parity.done", write replace','file write done "complete"','file close done','exit, clear')
+lines <- c(lines,'file close numeric','file close report','file open done using ".build/parity.done", write replace','file write done "complete"','file close done','exit, clear')
 writeLines(lines,file.path(root,".build/parity.do"))
 write.csv(do.call(rbind,manifest),file.path(root,".build/fixture-manifest.csv"),row.names=FALSE)
 cat("Exported",sum(vapply(manifest,function(x)x$status=="exported",logical(1))),"calls.\n")

@@ -73,6 +73,7 @@ recorded in the [verification report](tests/results/latest.md).
 - [Estimator details and adaptations](docs/estimators.md)
 - [Generator and R option mapping](docs/generator.md)
 - [Testing instructions](docs/testing.md)
+- [Assertion coverage and numerical discrepancy audit](tests/results/test-audit.md)
 - [Coverage mapping](tests/parity/coverage.md)
 - [R reference](reference/r-source.json)
 - [Test inventory](tests/parity/r-test-inventory.json)

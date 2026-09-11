@@ -4,6 +4,8 @@ Every original R test is retained unchanged and passes in the reference run.
 The table distinguishes replayed estimator calls, direct native helper tests,
 and native generator design/distribution translations. It does not
 claim a literal Stata translation of every R assertion or output string.
+See [the assertion audit](../results/test-audit.md) for concrete remaining
+gaps, including printed output, diagnostic specificity, and warning checks.
 
 The generated parity suite verifies numerical inference, warnings and output
 metadata. Native tests cover parser/container equivalents, replay, factor
@@ -31,18 +33,18 @@ Stata conventions rather than reproducing ggplot objects or viridis gradients.
 | `test-core.R` | non cluster-level error for S, D, Ng works | 9 estimator calls replayed |
 | `test-core.R` | empirical example works | 4 estimator calls replayed |
 | `test-core.R` | dgp.po warning work | Native generator design/validation translation |
-| `test-core.R` | data: small strata, option: small strata | 19 estimator calls replayed |
-| `test-core.R` | data: large strata, option: large strata | 14 estimator calls replayed |
-| `test-core.R` | data: small strata, option: large strata | 15 estimator calls replayed |
-| `test-core.R` | data: large strata, option: small strata | 9 estimator calls replayed |
-| `test-core.R` | data: mixed design, option: small strata | 19 estimator calls replayed |
-| `test-core.R` | data: mixed design, option: large strata | 22 estimator calls replayed |
-| `test-core.R` | data: small strata, option: small strata | 19 estimator calls replayed |
-| `test-core.R` | data: large strata, option: large strata | 14 estimator calls replayed |
-| `test-core.R` | data: small strata, option: large strata | 15 estimator calls replayed |
-| `test-core.R` | data: large strata, option: small strata | 9 estimator calls replayed |
-| `test-core.R` | data: mixed design, option: small strata | 19 estimator calls replayed |
-| `test-core.R` | data: mixed design, option: large strata | 22 estimator calls replayed |
+| `test-core.R` | data: small strata, option: small strata | 9 estimator calls replayed |
+| `test-core.R` | data: large strata, option: large strata | 5 estimator calls replayed |
+| `test-core.R` | data: small strata, option: large strata | 8 estimator calls replayed |
+| `test-core.R` | data: large strata, option: small strata | 5 estimator calls replayed |
+| `test-core.R` | data: mixed design, option: small strata | 8 estimator calls replayed |
+| `test-core.R` | data: mixed design, option: large strata | 11 estimator calls replayed |
+| `test-core.R` | data: small strata, option: small strata | 10 estimator calls replayed |
+| `test-core.R` | data: large strata, option: large strata | 9 estimator calls replayed |
+| `test-core.R` | data: small strata, option: large strata | 7 estimator calls replayed |
+| `test-core.R` | data: large strata, option: small strata | 4 estimator calls replayed |
+| `test-core.R` | data: mixed design, option: small strata | 11 estimator calls replayed |
+| `test-core.R` | data: mixed design, option: large strata | 11 estimator calls replayed |
 | `test-core.R` | print.sreg outputs expected information for large strata | 7 estimator calls replayed |
 | `test-core.R` | print.sreg outputs expected information for small strata | 9 estimator calls replayed |
 | `test-core.R` | plot.sreg works and returns ggplot object | 1 estimator calls replayed |

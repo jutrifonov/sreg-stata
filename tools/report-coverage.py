@@ -14,9 +14,12 @@ inventory_path = root / 'tests/parity/r-test-inventory.json'
 inventory = json.loads(inventory_path.read_text())
 rows = []
 generator_cases = 0
-for test in inventory['tests']:
+for test_id, test in enumerate(inventory['tests'], 1):
     filename = Path(test['r_file']).name
-    matches = [c for c in calls if c['file'] == filename and c['test'] == test['test']]
+    matches = [c for c in calls if int(c['test_id']) == test_id]
+    assert all(c['file'] == filename and c['test'] == test['test'] for c in matches), test
+    test['test_id'] = test_id
+    test['assertion_parity'] = 'not individually certified'
     exported = [c['id'] for c in matches if c['status'] == 'exported']
     generator = filename.startswith('test-rgen') or test['test'] == 'dgp.po warning work'
     test['r_baseline'] = 'passed'
@@ -50,6 +53,8 @@ Every original R test is retained unchanged and passes in the reference run.
 The table distinguishes replayed estimator calls, direct native helper tests,
 and native generator design/distribution translations. It does not
 claim a literal Stata translation of every R assertion or output string.
+See [the assertion audit](../results/test-audit.md) for concrete remaining
+gaps, including printed output, diagnostic specificity, and warning checks.
 
 The generated parity suite verifies numerical inference, warnings and output
 metadata. Native tests cover parser/container equivalents, replay, factor
@@ -62,6 +67,9 @@ Stata conventions rather than reproducing ggplot objects or viridis gradients.
 (root / 'tests/parity/coverage.md').write_text(text)
 dest = root / 'tests/results'
 dest.mkdir(exist_ok=True)
+audit = json.loads((root / '.build/test-audit.json').read_text())
+assert audit['verification_timestamp'] == report['timestamp_utc']
+(dest / 'test-audit.json').write_text(json.dumps(audit, indent=2) + '\n')
 (dest / 'verification.json').write_text(json.dumps(report, indent=2) + '\n')
 (dest / 'latest.md').write_text(f'''# Verification report
 
@@ -98,7 +106,9 @@ R cases. R and Stata use different random streams; no identical-seed parity
 is claimed. See [generator adaptations](../../docs/generator.md) for intentional
 edge-case fixes and [the coverage map](../parity/coverage.md) for the mapping.
 The plotting command uses native Stata styles instead of reproducing every
-R styling argument. This local report does not claim that hosted CI ran
+R styling argument. See [the assertion audit](test-audit.md) for the remaining
+assertion-level gaps; the case map is not a claim that every R expectation
+has been translated. This local report does not claim that hosted CI ran
 licensed Stata or that every R-specific object assertion has a literal port.
 ''')
 print(f'Updated coverage for {len(rows)} R tests; {generator_cases} include verified native generator scope.')

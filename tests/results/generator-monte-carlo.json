@@ -1,0 +1,61 @@
+{
+  "true_effect": 0.5,
+  "replicates_per_language_per_design": 100,
+  "large_strata": 4,
+  "individual_n": 1200,
+  "cluster_n": 200,
+  "adjusted": true,
+  "results": {
+    "r": {
+      "individual": {
+        "replicates": 100,
+        "mean_estimate": 0.5004173154775513,
+        "empirical_sd": 0.058740722506622225,
+        "mean_reported_se": 0.057880379569794284,
+        "coverage_95": 0.94
+      },
+      "cluster": {
+        "replicates": 100,
+        "mean_estimate": 0.4881040189889101,
+        "empirical_sd": 0.08750940488900279,
+        "mean_reported_se": 0.0829212995383576,
+        "coverage_95": 0.96
+      }
+    },
+    "stata": {
+      "individual": {
+        "replicates": 100,
+        "mean_estimate": 0.4970575452609774,
+        "empirical_sd": 0.05138874640961541,
+        "mean_reported_se": 0.05818220498159595,
+        "coverage_95": 0.99
+      },
+      "cluster": {
+        "replicates": 100,
+        "mean_estimate": 0.481901373283543,
+        "empirical_sd": 0.0970542210249222,
+        "mean_reported_se": 0.0838239717443367,
+        "coverage_95": 0.92
+      }
+    }
+  },
+  "comparison": {
+    "individual": {
+      "stata_minus_r_mean": -0.0033597702165739096,
+      "mc_standard_error_of_difference": 0.007804662541168423,
+      "mc_95_interval": [
+        -0.01865690879726402,
+        0.0119373683641162
+      ]
+    },
+    "cluster": {
+      "stata_minus_r_mean": -0.006202645705367105,
+      "mc_standard_error_of_difference": 0.013068059443843174,
+      "mc_95_interval": [
+        -0.031816042215299725,
+        0.019410750804565516
+      ]
+    }
+  },
+  "scope": "Exploratory sampling diagnostic for two large-strata designs, not a complete distributional proof or a zero-difference assertion."
+}

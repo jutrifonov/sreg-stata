@@ -23,7 +23,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 1,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -37,7 +39,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         1
-      ]
+      ],
+      "test_id": 2,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -51,7 +55,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         2
-      ]
+      ],
+      "test_id": 3,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -65,7 +71,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         3
-      ]
+      ],
+      "test_id": 4,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-mixed-components.R",
@@ -79,7 +87,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         4
-      ]
+      ],
+      "test_id": 5,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -90,7 +100,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 6,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -105,7 +117,9 @@
       "captured_call_ids": [
         5,
         6
-      ]
+      ],
+      "test_id": 7,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -116,7 +130,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 8,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-cluster-small-correction.R",
@@ -133,7 +149,9 @@
         8,
         9,
         10
-      ]
+      ],
+      "test_id": 9,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -169,7 +187,9 @@
         31,
         32,
         33
-      ]
+      ],
+      "test_id": 10,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -231,7 +251,9 @@
         80,
         81,
         82
-      ]
+      ],
+      "test_id": 11,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -247,7 +269,9 @@
         83,
         84,
         85
-      ]
+      ],
+      "test_id": 12,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -261,7 +285,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         86
-      ]
+      ],
+      "test_id": 13,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -275,7 +301,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         87
-      ]
+      ],
+      "test_id": 14,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -296,7 +324,9 @@
         93,
         94,
         95
-      ]
+      ],
+      "test_id": 15,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -312,7 +342,9 @@
         96,
         97,
         98
-      ]
+      ],
+      "test_id": 16,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -334,7 +366,9 @@
         105,
         106,
         107
-      ]
+      ],
+      "test_id": 17,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -351,7 +385,9 @@
         109,
         110,
         111
-      ]
+      ],
+      "test_id": 18,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -363,7 +399,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 19,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -384,18 +422,10 @@
         117,
         118,
         119,
-        120,
-        158,
-        159,
-        160,
-        161,
-        162,
-        163,
-        164,
-        165,
-        166,
-        167
-      ]
+        120
+      ],
+      "test_id": 20,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -412,17 +442,10 @@
         122,
         123,
         124,
-        125,
-        168,
-        169,
-        170,
-        171,
-        172,
-        173,
-        174,
-        175,
-        176
-      ]
+        125
+      ],
+      "test_id": 21,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -442,15 +465,10 @@
         130,
         131,
         132,
-        133,
-        177,
-        178,
-        179,
-        180,
-        181,
-        182,
-        183
-      ]
+        133
+      ],
+      "test_id": 22,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -467,12 +485,10 @@
         135,
         136,
         137,
-        138,
-        184,
-        185,
-        186,
-        187
-      ]
+        138
+      ],
+      "test_id": 23,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -492,19 +508,10 @@
         143,
         144,
         145,
-        146,
-        188,
-        189,
-        190,
-        191,
-        192,
-        193,
-        194,
-        195,
-        196,
-        197,
-        198
-      ]
+        146
+      ],
+      "test_id": 24,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -527,19 +534,10 @@
         154,
         155,
         156,
-        157,
-        199,
-        200,
-        201,
-        202,
-        203,
-        204,
-        205,
-        206,
-        207,
-        208,
-        209
-      ]
+        157
+      ],
+      "test_id": 25,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -552,15 +550,6 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        112,
-        113,
-        114,
-        115,
-        116,
-        117,
-        118,
-        119,
-        120,
         158,
         159,
         160,
@@ -571,7 +560,9 @@
         165,
         166,
         167
-      ]
+      ],
+      "test_id": 26,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -584,11 +575,6 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        121,
-        122,
-        123,
-        124,
-        125,
         168,
         169,
         170,
@@ -598,7 +584,9 @@
         174,
         175,
         176
-      ]
+      ],
+      "test_id": 27,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -611,14 +599,6 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        126,
-        127,
-        128,
-        129,
-        130,
-        131,
-        132,
-        133,
         177,
         178,
         179,
@@ -626,7 +606,9 @@
         181,
         182,
         183
-      ]
+      ],
+      "test_id": 28,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -639,16 +621,13 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        134,
-        135,
-        136,
-        137,
-        138,
         184,
         185,
         186,
         187
-      ]
+      ],
+      "test_id": 29,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -661,14 +640,6 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        139,
-        140,
-        141,
-        142,
-        143,
-        144,
-        145,
-        146,
         188,
         189,
         190,
@@ -680,7 +651,9 @@
         196,
         197,
         198
-      ]
+      ],
+      "test_id": 30,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -693,17 +666,6 @@
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
-        147,
-        148,
-        149,
-        150,
-        151,
-        152,
-        153,
-        154,
-        155,
-        156,
-        157,
         199,
         200,
         201,
@@ -715,7 +677,9 @@
         207,
         208,
         209
-      ]
+      ],
+      "test_id": 31,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -735,7 +699,9 @@
         214,
         215,
         216
-      ]
+      ],
+      "test_id": 32,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -757,7 +723,9 @@
         223,
         224,
         225
-      ]
+      ],
+      "test_id": 33,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -771,7 +739,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         226
-      ]
+      ],
+      "test_id": 34,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -782,7 +752,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 35,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -793,7 +765,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 36,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-design-classifier-warning.R",
@@ -804,7 +778,9 @@
       ],
       "status": "internal-helper-verified",
       "r_baseline": "passed",
-      "captured_call_ids": []
+      "captured_call_ids": [],
+      "test_id": 37,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -818,7 +794,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         227
-      ]
+      ],
+      "test_id": 38,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -832,7 +810,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         228
-      ]
+      ],
+      "test_id": 39,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -847,7 +827,9 @@
       "captured_call_ids": [
         229,
         230
-      ]
+      ],
+      "test_id": 40,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-general-k-mixed.R",
@@ -863,7 +845,9 @@
         231,
         232,
         233
-      ]
+      ],
+      "test_id": 41,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -877,7 +861,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         234
-      ]
+      ],
+      "test_id": 42,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -891,7 +877,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         235
-      ]
+      ],
+      "test_id": 43,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -905,7 +893,9 @@
       "r_baseline": "passed",
       "captured_call_ids": [
         236
-      ]
+      ],
+      "test_id": 44,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-mixed-adjustment-validation.R",
@@ -920,7 +910,9 @@
       "captured_call_ids": [
         237,
         238
-      ]
+      ],
+      "test_id": 45,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-covariate-output.R",
@@ -932,7 +924,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 46,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -944,7 +938,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 47,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -956,7 +952,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 48,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -968,7 +966,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 49,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
@@ -980,7 +980,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 50,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -996,7 +998,9 @@
       "captured_call_ids": [
         239
       ],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 51,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1012,7 +1016,9 @@
       "captured_call_ids": [
         240
       ],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 52,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1024,7 +1030,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 53,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1036,7 +1044,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 54,
+      "assertion_parity": "not individually certified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -1048,7 +1058,9 @@
       "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "design-and-distribution-verified"
+      "native_generator": "design-and-distribution-verified",
+      "test_id": 55,
+      "assertion_parity": "not individually certified"
     }
   ]
 }

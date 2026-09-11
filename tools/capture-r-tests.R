@@ -15,6 +15,7 @@ grDevices::pdf(file.path(root,".build/r-plots.pdf"))
 .capture$calls <- list()
 .capture$file <- ""
 .capture$test <- ""
+.capture$test_id <- 0L
 .original_sreg <- sreg::sreg
 .record_sreg <- function(Y, S=NULL, D, G.id=NULL, Ng=NULL, X=NULL,
                          HC1=TRUE, small.strata=FALSE, k=NULL) {
@@ -25,7 +26,7 @@ grDevices::pdf(file.path(root,".build/r-plots.pdf"))
         warning=function(w) warnings <<- c(warnings,conditionMessage(w))),
         error=function(e) { error <<- e; NULL })
     id <- length(.capture$calls)+1L
-    .capture$calls[[id]] <- list(id=id,file=.capture$file,test=.capture$test,
+    .capture$calls[[id]] <- list(id=id,file=.capture$file,test=.capture$test,test_id=.capture$test_id,
         inputs=inputs,result=result,warnings=warnings,
         error=if(is.null(error)) NULL else conditionMessage(error))
     if (!is.null(error)) stop(error)
@@ -35,7 +36,7 @@ assignInNamespace("sreg", .record_sreg, ns="sreg")
 unlockBinding("sreg", as.environment("package:sreg"))
 assign("sreg", .record_sreg, as.environment("package:sreg"))
 lockBinding("sreg", as.environment("package:sreg"))
-trace(testthat::test_that, tracer=quote(.GlobalEnv$.capture$test <- desc),print=FALSE)
+trace(testthat::test_that, tracer=quote({ .GlobalEnv$.capture$test <- desc; .GlobalEnv$.capture$test_id <- .GlobalEnv$.capture$test_id + 1L }),print=FALSE)
 testenv <- new.env(parent=asNamespace("sreg"))
 results <- list()
 for (f in sort(list.files(file.path(root,"tests/upstream/tests/testthat"),
@@ -47,6 +48,7 @@ for (f in sort(list.files(file.path(root,"tests/upstream/tests/testthat"),
 untrace(testthat::test_that)
 example_env <- new.env(parent=globalenv())
 for(topic in c("sreg","sreg.rgen","print.sreg","plot.sreg")) {
+    .capture$test_id <- 0L
     .capture$file <- "R documentation examples"
     .capture$test <- topic
     utils::example(topic,package="sreg",local=example_env,ask=FALSE,echo=FALSE,
