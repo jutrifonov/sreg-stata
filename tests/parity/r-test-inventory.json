@@ -357,11 +357,13 @@
       "r_file": "tests/testthat/test-core.R",
       "r_line": 858,
       "test": "dgp.po warning work",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-core.R",
@@ -924,51 +926,61 @@
       "r_file": "tests/testthat/test-rgen-covariate-output.R",
       "r_line": 1,
       "test": "is.cov controls covariate columns in large-strata cluster designs",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
       "r_line": 1,
       "test": "large-strata custom DGP defaults preserve generated data",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
       "r_line": 17,
       "test": "large-strata generator accepts stratum-specific allocations",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
       "r_line": 42,
       "test": "large-strata generator applies custom outcome effects",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-large-custom.R",
       "r_line": 72,
       "test": "custom large-strata arguments are validated",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -976,14 +988,15 @@
       "test": "sreg.rgen generates mixed individual-level designs",
       "stata_tests": [
         ".build/parity.do (generated)",
-        "tests/stata/test-native.do"
+        "tests/stata/test-native.do",
+        "tests/stata/test-generator.do"
       ],
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
         239
       ],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
@@ -991,44 +1004,51 @@
       "test": "sreg.rgen generates mixed cluster-level designs",
       "stata_tests": [
         ".build/parity.do (generated)",
-        "tests/stata/test-native.do"
+        "tests/stata/test-native.do",
+        "tests/stata/test-generator.do"
       ],
       "status": "estimator-calls-verified",
       "r_baseline": "passed",
       "captured_call_ids": [
         240
       ],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
       "r_line": 47,
       "test": "mixed sreg.rgen validates its component sizes",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
       "r_line": 64,
       "test": "existing sreg.rgen calls retain their behavior",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     },
     {
       "r_file": "tests/testthat/test-rgen-mixed.R",
       "r_line": 75,
       "test": "mixed sreg.rgen derives an allocation when treat.sizes is omitted",
-      "stata_tests": [],
-      "status": "pending-native-generator",
+      "stata_tests": [
+        "tests/stata/test-generator.do"
+      ],
+      "status": "native-generator-verified",
       "r_baseline": "passed",
       "captured_call_ids": [],
-      "native_generator": "pending"
+      "native_generator": "design-and-distribution-verified"
     }
   ]
 }

@@ -10,6 +10,11 @@ assert strpos(`"`r(fn)'"',".build/install")>0
 which sregplot
 findfile sreg_mata.mata
 do examples/estimation.do
+findfile sreg_rgen.ado
+assert strpos(`"`r(fn)'"',".build/install")>0
+findfile sreg_rgen.mata
+findfile sreg_rgen.sthlp
+do examples/generation.do
 file open done using ".build/install.done", write replace
 file write done "PASS"
 file close done

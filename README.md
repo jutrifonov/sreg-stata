@@ -2,7 +2,7 @@
 
 Native Stata/Mata implementation of **sreg: Stratified Randomized Experiments**.
 
-**Status: estimator and output milestone implemented and tested on Stata/MP 14.2.**
+**Status: native estimators, output, and random-data generator implemented.**
 
 Native estimators cover large, small and mixed strata, individual and cluster
 assignment, multiple treatment arms, covariate adjustment and HC1. The package
@@ -10,8 +10,10 @@ provides estimation tables, full covariance matrices, stored results,
 `lincom`/`test` support and native coefficient plots. Installed users need
 Stata 14.2 or newer, with no R or Python dependency.
 
-The native random-data generator remains pending. Its R tests are retained
-and run as part of the reference suite; they are not native generator tests.
+The native `sreg_rgen` command covers individual and cluster assignment with
+large, small, mixed, and custom large-stratum designs. Its native tests run
+alongside the unchanged R tests. See [generator details](docs/generator.md)
+for syntax, verification, and deliberate fixes to R edge cases.
 
 ## Syntax
 
@@ -25,6 +27,14 @@ sreg outcome [covariates] [if] [in], treatment(varname) ///
 sreg earnings baseline_earnings age, treatment(assignment) strata(block)
 lincom tau2 - tau1
 sregplot, xtitle("ATE relative to control")
+```
+
+Generate an example experiment entirely within Stata:
+
+```stata
+set seed 2026
+sreg_rgen, n(600) individual strata(5) tau(.5 .8) clear
+sreg Y x_1 x_2, treatment(D) strata(S)
 ```
 
 The command remains `sreg`. This repository is `sreg-stata`; the older
@@ -61,6 +71,7 @@ recorded in the [verification report](tests/results/latest.md).
 - [Interface specification](docs/interface.md)
 - [Porting plan](docs/porting-plan.md)
 - [Estimator details and adaptations](docs/estimators.md)
+- [Generator and R option mapping](docs/generator.md)
 - [Testing instructions](docs/testing.md)
 - [Coverage mapping](tests/parity/coverage.md)
 - [R reference](reference/r-source.json)
@@ -69,7 +80,7 @@ recorded in the [verification report](tests/results/latest.md).
 The R reference is pinned to an exact commit and vendored source checksums
 are verified by the test runner. No tests are silently removed from the
 upstream suite. The coverage mapping distinguishes native estimator checks
-from generator-only tests that currently run against R.
+from translated generator tests and R-specific container checks.
 
 ## Layout
 

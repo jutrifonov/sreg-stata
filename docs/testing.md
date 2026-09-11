@@ -31,7 +31,8 @@ The runner:
    errors, z statistics, normal p-values, confidence intervals, warnings,
    sample counts, adjustment status and mixed component estimates/variances.
 6. Runs the direct internal-helper translations, native interface tests,
-   plotting tests and analytic covariance tests.
+   plotting tests, analytic covariance tests, native generator design and
+   distribution tests, and isolated package installation examples.
 7. Writes `.build/verification.json`; any required failure exits nonzero.
 
 The baseline contains 55 test cases and 563 assertions at the pinned commit.
@@ -57,8 +58,9 @@ the runner also requires end-of-suite markers and checks each parity row.
 The original tests include generator, internal helper, output and R object
 checks. Replaying public estimator calls is not a claim that every original
 assertion has a literal Stata translation. See `tests/parity/coverage.md` for
-the explicit mapping. In particular, the native generator is still pending;
-generator-only tests currently establish the R baseline only.
+the explicit mapping. Native generator tests translate the original generator
+test intentions and add distribution and data-preservation checks. See
+`docs/generator.md` for the RNG and edge-case adaptations.
 
 Do not edit `tests/upstream` when fixing the port. It is a verbatim snapshot
 of the reference package (excluding Git metadata and GitHub artifacts).

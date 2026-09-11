@@ -73,6 +73,7 @@ def main():
         raise RuntimeError('A licensed Stata executable is required. Set STATA_BIN or --stata.')
     run(['Rscript', 'tools/export-stata-fixtures.R', '.'], 'fixture-export.log')
     run(['Rscript', 'tools/export-internal-fixtures.R'], 'internal-export.log')
+    run(['Rscript', 'tools/export-generator-fixtures.R'], 'generator-export.log')
     stata_run(binary, '.build/parity.do', 'parity.done')
     with (BUILD / 'parity-results.csv').open() as f:
         parity = list(csv.DictReader(f))
@@ -85,6 +86,7 @@ def main():
     stata_run(binary, '.build/internal.do', 'internal.done')
     stata_run(binary, 'tests/stata/test-native.do', 'native.done')
     stata_run(binary, 'tests/stata/test-covariance.do', 'covariance.done')
+    stata_run(binary, 'tests/stata/test-generator.do', 'generator.done')
     stata_run(binary, 'tests/stata/test-install.do', 'install.done')
     report.update(native_verified=True, native_cases=len(parity),
                   stata_version=(BUILD / 'stata-version.txt').read_text().strip(),
@@ -92,7 +94,7 @@ def main():
                   error_cases=sum(r['kind'] == 'error' for r in parity),
                   r_container_cases=sum(r['status'] != 'exported' for r in manifest),
                   native_interface_tests='passed', internal_helper_tests='passed',
-                  covariance_tests='passed', installation_tests='passed',
+                  covariance_tests='passed', installation_tests='passed', generator_tests='passed',
                   tolerance='1e-8 * (1 + abs(R value))')
     (BUILD / 'verification.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

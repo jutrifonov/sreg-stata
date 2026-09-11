@@ -2,8 +2,8 @@
 
 Estimator/output milestone: implemented and locally verified. See
 `tests/results/latest.md` for the results and `tests/parity/coverage.md` for
-the per-test mapping. The native generator and its native tests remain
-pending before the full package port can be considered complete.
+the per-test mapping. Native generation and its translated design/distribution
+tests are now implemented; see `docs/generator.md` for R edge-case adaptations.
 
 1. Audit pinned R source, all tests, examples, help and exported functionality.
 2. Establish a working R baseline and licensed Stata batch test runner.

@@ -2,7 +2,7 @@
 
 Every original R test is retained unchanged and passes in the reference run.
 The table distinguishes replayed estimator calls, direct native helper tests,
-and generator functionality that is not yet implemented natively. It does not
+and native generator design/distribution translations. It does not
 claim a literal Stata translation of every R assertion or output string.
 
 The generated parity suite verifies numerical inference, warnings and output
@@ -30,7 +30,7 @@ Stata conventions rather than reproducing ggplot objects or viridis gradients.
 | `test-core.R` | skipped values in range of S/D works | 3 estimator calls replayed |
 | `test-core.R` | non cluster-level error for S, D, Ng works | 9 estimator calls replayed |
 | `test-core.R` | empirical example works | 4 estimator calls replayed |
-| `test-core.R` | dgp.po warning work | R baseline only; native generator pending |
+| `test-core.R` | dgp.po warning work | Native generator design/validation translation |
 | `test-core.R` | data: small strata, option: small strata | 19 estimator calls replayed |
 | `test-core.R` | data: large strata, option: large strata | 14 estimator calls replayed |
 | `test-core.R` | data: small strata, option: large strata | 15 estimator calls replayed |
@@ -57,13 +57,13 @@ Stata conventions rather than reproducing ggplot objects or viridis gradients.
 | `test-mixed-adjustment-validation.R` | individual mixed adjustment reports unidentified large regressions | 1 estimator calls replayed |
 | `test-mixed-adjustment-validation.R` | cluster mixed adjustment reports unidentified large regressions | 1 estimator calls replayed |
 | `test-mixed-adjustment-validation.R` | unadjusted mixed estimation remains available after adjustment failure | 2 estimator calls replayed |
-| `test-rgen-covariate-output.R` | is.cov controls covariate columns in large-strata cluster designs | R baseline only; native generator pending |
-| `test-rgen-large-custom.R` | large-strata custom DGP defaults preserve generated data | R baseline only; native generator pending |
-| `test-rgen-large-custom.R` | large-strata generator accepts stratum-specific allocations | R baseline only; native generator pending |
-| `test-rgen-large-custom.R` | large-strata generator applies custom outcome effects | R baseline only; native generator pending |
-| `test-rgen-large-custom.R` | custom large-strata arguments are validated | R baseline only; native generator pending |
-| `test-rgen-mixed.R` | sreg.rgen generates mixed individual-level designs | 1 estimator calls replayed; native generator pending |
-| `test-rgen-mixed.R` | sreg.rgen generates mixed cluster-level designs | 1 estimator calls replayed; native generator pending |
-| `test-rgen-mixed.R` | mixed sreg.rgen validates its component sizes | R baseline only; native generator pending |
-| `test-rgen-mixed.R` | existing sreg.rgen calls retain their behavior | R baseline only; native generator pending |
-| `test-rgen-mixed.R` | mixed sreg.rgen derives an allocation when treat.sizes is omitted | R baseline only; native generator pending |
+| `test-rgen-covariate-output.R` | is.cov controls covariate columns in large-strata cluster designs | Native generator design/validation translation |
+| `test-rgen-large-custom.R` | large-strata custom DGP defaults preserve generated data | Native generator design/validation translation |
+| `test-rgen-large-custom.R` | large-strata generator accepts stratum-specific allocations | Native generator design/validation translation |
+| `test-rgen-large-custom.R` | large-strata generator applies custom outcome effects | Native generator design/validation translation |
+| `test-rgen-large-custom.R` | custom large-strata arguments are validated | Native generator design/validation translation |
+| `test-rgen-mixed.R` | sreg.rgen generates mixed individual-level designs | 1 estimator calls replayed; native generator design/validation translation |
+| `test-rgen-mixed.R` | sreg.rgen generates mixed cluster-level designs | 1 estimator calls replayed; native generator design/validation translation |
+| `test-rgen-mixed.R` | mixed sreg.rgen validates its component sizes | Native generator design/validation translation |
+| `test-rgen-mixed.R` | existing sreg.rgen calls retain their behavior | Native generator design/validation translation |
+| `test-rgen-mixed.R` | mixed sreg.rgen derives an allocation when treat.sizes is omitted | Native generator design/validation translation |

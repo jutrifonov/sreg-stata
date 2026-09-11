@@ -170,4 +170,4 @@ Bai et al. (2024); Bai (2022); Bai et al. (2022); Liu (2024); Cytrynbaum (2024).
 {browse "https://github.com/jutrifonov/sreg":R reference repository}
 
 {title:Also see}
-{p 4 4 2}{help sregplot}, {help lincom}, {help test}, {help estimates}{p_end}
+{p 4 4 2}{help sregplot}, {help sreg_rgen}, {help lincom}, {help test}, {help estimates}{p_end}

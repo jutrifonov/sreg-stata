@@ -104,10 +104,9 @@ individuals.
 - `sregplot` returns a native graph. Styling uses Stata options; the R
   viridis/gradient scale is not reproduced. No prediction command is exposed.
 
-## Remaining package scope
+## Generator and documentation
 
-The native random-data generator `sreg.rgen` is not implemented in this
-estimator/output milestone. Its original tests run against R and generate
-some of the estimation fixtures. They are not claimed as native generator
-coverage. The original R vignettes and help are retained for reference;
-the Stata user documentation covers the commands implemented here.
+The native generator is available as `sreg_rgen`; see [generator details](generator.md)
+for its tests and explicit adaptations from R. Original R vignettes and help
+remain unchanged as references; native Stata help and examples cover the
+implemented commands.
