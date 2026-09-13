@@ -7,3 +7,4 @@
 .build/
 __pycache__/
 Rplots.pdf
+examples/output/

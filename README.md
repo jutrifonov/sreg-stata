@@ -37,6 +37,18 @@ help sreg
 
 Access to the repository is currently required to download it. Once installed, the package runs entirely within Stata.
 
+## Try the package
+
+The [hands-on do-file](examples/try_sreg.do) installs the package, downloads its example data, and runs individual and clustered examples with large, small, and mixed strata. It also reproduces the R package's Peru empirical example using the included **AEJapp data (215 observations, 62 variables)**.
+
+From the downloaded repository folder in Stata:
+
+```stata
+do examples/try_sreg.do
+```
+
+The walkthrough saves tables, estimates, plots, and a log in `examples/output/`. Save any work in memory before running it. For the dataset's source and empirical specification, see `help sreg_aejapp` after installation.
+
 ## Command: `sreg`
 
 Estimates treatment effects relative to the control group and reports design-based standard errors and confidence intervals.
@@ -108,6 +120,206 @@ lincom tau2 - tau1
 ```
 
 Run `sreg` without arguments to display the estimation table again. See `help sreg` for the complete list of stored results.
+
+## Empirical illustration
+
+The package includes the same `AEJapp` dataset used by the R version of
+`sreg`. The data come from Chong et al. (2016), who studied iron deficiency
+and educational attainment among school-age children in Peru. The Stata file
+contains all 215 observations and 62 variables from the R package.
+
+The example below uses:
+
+| Variable | Description |
+|---|---|
+| `gradesq34` | Sum of average grades in the final two quarters |
+| `treatment` | Original treatment status; code 3 is the control group |
+| `class_level` | School-year stratum |
+| `pills_taken` | Number of pills taken by the student |
+| `age_months` | Student age in months |
+
+### Load the data
+
+After downloading the repository, replace `/path/to/sreg-stata` with the
+complete location of the package on your computer. `net get` copies the
+example dataset into Stata's current working folder, and `use` loads it into
+memory:
+
+```stata
+net get sreg, from("/path/to/sreg-stata") replace
+use "sreg_aejapp.dta", clear
+```
+
+Stata 14.2 requires the complete folder path here; `from(".")` is not
+accepted. You can see the current working folder with `pwd`. Alternatively,
+load the file directly:
+
+```stata
+use "/path/to/sreg-stata/data/sreg_aejapp.dta", clear
+```
+
+You can inspect the complete dataset with `describe`. To look only at the
+variables used in this illustration:
+
+```stata
+describe gradesq34 treatment class_level pills_taken age_months
+list gradesq34 treatment class_level pills_taken age_months in 1/10
+```
+
+The first ten observations look like this:
+
+```text
+     +-------------------------------------------------------+
+     | gradesq34   treatment   class_level   pills_taken   age_months |
+     |-------------------------------------------------------|
+  1. |      11.2           1             1             0      156.846 |
+  2. |      12.4           3             3            16     186.4148 |
+  3. |      11.9           3             5             5     209.0513 |
+  4. |      13.1           3             1            21     146.2012 |
+  5. |      13.4           2             2             9     168.7721 |
+  6. |      10.7           3             1             5      146.037 |
+  7. |      12.8           3             1            27     153.5277 |
+  8. |      10.9           2             1             1     146.0041 |
+  9. |      13.2           2             1            59     151.6222 |
+ 10. |      11.2           1             3            41     174.2916 |
+     +-------------------------------------------------------+
+```
+
+### Prepare the treatment variable
+
+`sreg` expects the control group to be coded `0`. In the original data the
+control group is coded `3`, so create a new treatment variable named `D` while
+leaving the original variable unchanged:
+
+```stata
+generate byte D = cond(treatment == 3, 0, treatment)
+tabulate D class_level
+```
+
+```text
+           |                     Year in School
+         D |         1          2          3          4          5 |     Total
+-----------+-------------------------------------------------------+----------
+         0 |        15         19         16         12         10 |        72
+         1 |        16         19         15         10         10 |        70
+         2 |        17         20         15         11         10 |        73
+-----------+-------------------------------------------------------+----------
+     Total |        48         58         46         33         30 |       215
+```
+
+### Estimate treatment effects without covariates
+
+Pass the outcome before the comma and identify the treatment and strata
+variables in the options:
+
+```stata
+sreg gradesq34, treatment(D) strata(class_level)
+estimates store unadjusted
+```
+
+```text
+Saturated Model Estimation Results under CAR
+Observations:        215
+Number of treatments: 2
+Number of strata: 5
+Setup: large strata
+Standard errors: adjusted (HC1)
+Treatment assignment: individual level
+Covariates used in linear adjustments:
+------------------------------------------------------------------------------
+             |            Design-based
+   gradesq34 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        tau1 |  -.0511297   .2064541    -0.25   0.804    -.4557724     .353513
+        tau2 |   .4090337   .2065146     1.98   0.048     .0042726    .8137948
+------------------------------------------------------------------------------
+```
+
+`tau1` is treatment 1 relative to control, and `tau2` is treatment 2 relative
+to control.
+
+### Add covariate adjustment
+
+Covariates are written after the outcome and before the comma:
+
+```stata
+sreg gradesq34 pills_taken age_months, treatment(D) strata(class_level)
+estimates store adjusted
+```
+
+```text
+Saturated Model Estimation Results under CAR with linear adjustments
+Observations:        215
+Number of treatments: 2
+Number of strata: 5
+Setup: large strata
+Standard errors: adjusted (HC1)
+Treatment assignment: individual level
+Covariates used in linear adjustments:  pills_taken age_months
+------------------------------------------------------------------------------
+             |            Design-based
+   gradesq34 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        tau1 |  -.0286159   .1816173    -0.16   0.875    -.3845793    .3273475
+        tau2 |   .3460869   .1857249     1.86   0.062    -.0179273    .7101011
+------------------------------------------------------------------------------
+```
+
+### Extract and compare results
+
+Stata keeps the latest estimates in `e(b)` and the corresponding covariance
+matrix in `e(V)`. The `_b[]` and `_se[]` notation extracts one named result:
+
+```stata
+display _b[tau1]
+display _se[tau1]
+display _b[tau2]
+matrix list e(b)
+matrix list e(V)
+ereturn list
+```
+
+For example, `matrix list e(b)` after the adjusted model gives:
+
+```text
+e(b)[1,2]
+          tau1        tau2
+y1  -.02861589   .34608688
+```
+
+Compare the specifications side by side:
+
+```stata
+estimates table unadjusted adjusted, b(%9.5f) se(%9.5f) stats(N)
+```
+
+```text
+--------------------------------------
+    Variable | unadjusted    adjusted
+-------------+------------------------
+        tau1 |   -0.05113    -0.02862
+             |    0.20645     0.18162
+        tau2 |    0.40903     0.34609
+             |    0.20651     0.18572
+-------------+------------------------
+           N |        215         215
+--------------------------------------
+                          legend: b/se
+```
+
+Finally, restore the adjusted model and plot its treatment effects:
+
+```stata
+estimates restore adjusted
+sregplot, treatmentlabels("Treatment 1" "Treatment 2") ///
+    title("Peru: school grades, covariate adjusted") bgcolor(white)
+```
+
+![Covariate-adjusted estimates for the Peru application](docs/figures/empirical-example.svg)
+
+The complete sequence is also included in
+[`examples/try_sreg.do`](examples/try_sreg.do). After installation, run
+`help sreg_aejapp` for the dataset source and citation.
 
 ### Example: small strata
 
