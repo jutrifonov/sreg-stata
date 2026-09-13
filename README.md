@@ -1,4 +1,4 @@
-# sreg: Stratified Randomized Experiments<br><a href="https://github.com/jutrifonov/sreg-stata"><img src="docs/figures/sreg-logo.png" alt="sreg logo" align="right" height="250" /></a>
+# sreg: Stratified Randomized Experiments (Stata® Edition)<br><a href="https://github.com/jutrifonov/sreg-stata"><img src="docs/figures/sreg-logo.png" alt="sreg logo" align="right" height="250" /></a>
 
 ![version](https://img.shields.io/badge/sreg-v.0.1.0-green?style=flat&logo=github&labelColor=2A2523)
 ![Stata](https://img.shields.io/badge/Stata-14.2%2B-blue?style=flat&labelColor=2A2523)
