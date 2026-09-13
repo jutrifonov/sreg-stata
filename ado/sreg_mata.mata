@@ -29,10 +29,14 @@ void sreg_warn(string scalar msg)
 
 real colvector sreg_ids(real colvector s)
 {
-    real colvector u, z
+    real colvector z, ordering
+    real matrix info
     real scalar j
-    u=uniqrows(sort(s,1)); z=J(rows(s),1,.)
-    for (j=1;j<=rows(u);j++) z[selectindex(s:==u[j])]=J(sum(s:==u[j]),1,j)
+    if(!rows(s)) return(J(0,1,.))
+    ordering=order((s,(1::rows(s))),(1,2))
+    info=panelsetup(s[ordering],1); z=J(rows(s),1,.)
+    for(j=1;j<=rows(info);j++)
+        z[ordering[|info[j,1]\info[j,2]|]]=J(info[j,2]-info[j,1]+1,1,j)
     return(z)
 }
 
@@ -154,18 +158,22 @@ real scalar sreg_small_cross(real colvector U, real colvector V,
     real colvector S, real colvector D, real scalar fac)
 {
     real scalar h, n, a, r, s, j, rho, cv, ans
-    real matrix su, sv
-    real colvector ur, vr
+    real matrix su, sv, grouped, info, sums
+    real colvector ur, vr, ix, ids
     real rowvector gu, gv, counts
     h=max(S); n=rows(S); a=max(D)+1
     su=sv=J(h,a,0); gu=gv=counts=J(1,a,0); ans=0
     for(r=0;r<a;r++) {
         ur=select(U,D:==r); vr=select(V,D:==r)
         counts[r+1]=rows(ur)/h; gu[r+1]=mean(ur); gv[r+1]=mean(vr)
-        for(s=1;s<=h;s++) {
-            su[s,r+1]=sum(select(U,(D:==r):&(S:==s)))
-            sv[s,r+1]=sum(select(V,(D:==r):&(S:==s)))
-        }
+        // Aggregate each treatment's strata once, preserving within-cell order.
+        // The previous implementation rescanned all observations for every cell.
+        ix=selectindex(D:==r)
+        grouped=sort((S[ix],U[ix],V[ix],ix),(1,4))
+        info=panelsetup(grouped,1)
+        sums=panelsum(grouped[,2..3],info)
+        ids=grouped[info[,1],1]
+        su[ids,r+1]=sums[,1]; sv[ids,r+1]=sums[,2]
         rho=0
         for(j=1;j<h;j=j+2) rho=rho+(su[j,r+1]*sv[j+1,r+1]+sv[j,r+1]*su[j+1,r+1])/h/counts[r+1]^2
         cv=mean((ur:-gu[r+1]):*(vr:-gv[r+1]))
@@ -183,20 +191,29 @@ struct sreg_result scalar sreg_small(real colvector T, real colvector S,
 {
     struct sreg_result scalar out
     real scalar n, a, h, p, d, s, j, fac
-    real matrix dx, W
-    real colvector dy, ix, iz, res, beta
+    real matrix dx, W, meansT, meansX, grouped, info, sums
+    real colvector dy, ix, iz, res, beta, counts
     n=rows(T); h=max(S); a=max(D)+1; p=cols(X)
     if(mod(h,2)) sreg_fail("The paired-strata variance estimator requires an even number of strata.")
     if(h<2) sreg_fail("At least two small strata are required.")
     out.b=J(1,a-1,.); out.beta=J(a-1,p,.); W=J(n,a-1,0)
+    // Compute stratum-arm means once rather than repeatedly scanning S and D.
+    meansT=J(h,a,.); meansX=J(h*a,p,.)
+    for(j=0;j<a;j++) {
+        ix=selectindex(D:==j)
+        if(!rows(ix)) sreg_fail("Every treatment arm, including control, must occur in every small stratum.")
+        grouped=sort((S[ix],ix,T[ix],X[ix,.]),(1,2))
+        info=panelsetup(grouped,1)
+        if(rows(info)!=h) sreg_fail("Every treatment arm, including control, must occur in every small stratum.")
+        counts=info[,2]-info[,1]:+1
+        sums=panelsum(grouped[,3..(3+p)],info):/counts
+        meansT[,j+1]=sums[,1]
+        if(p) meansX[|(j*h+1),1\((j+1)*h),p|]=sums[,2..(p+1)]
+    }
     for(d=1;d<a;d++) {
-        dy=J(h,1,.); dx=J(h,p,.)
-        for(s=1;s<=h;s++) {
-            ix=selectindex((S:==s):&(D:==d)); iz=selectindex((S:==s):&(D:==0))
-            if(!rows(ix) | !rows(iz)) sreg_fail("Every treatment arm, including control, must occur in every small stratum.")
-            dy[s]=mean(T[ix])-mean(T[iz])
-            if(p) dx[s,.]=mean(X[ix,.])-mean(X[iz,.])
-        }
+        dy=meansT[,d+1]-meansT[,1]
+        dx=J(h,p,.)
+        if(p) dx=meansX[|(d*h+1),1\((d+1)*h),p|]-meansX[|1,1\h,p|]
         res=T
         if(p) {
             beta=sreg_slope(dy,dx); out.beta[d,.]=beta'
@@ -229,10 +246,11 @@ struct sreg_result scalar sreg_fit(real colvector T, real colvector S,
 {
     struct sreg_result scalar out, lo, hi
     real colvector sizes, us, flag, il, ih
+    real matrix info
     real scalar s,h, modal, j, weight, sharevar, nn
     real rowvector delta
-    h=max(S); sizes=J(h,1,.)
-    for(s=1;s<=h;s++) sizes[s]=sum(S:==s)
+    h=max(S); info=panelsetup(sort(S,1),1)
+    sizes=info[,2]-info[,1]:+1
     us=uniqrows(sort(sizes,1))
     if(!small) {
         if(rows(us)==1 & us[1]<=5) sreg_warn("All strata have the same small number of assignment units, but smallstrata was not specified.")
@@ -271,8 +289,8 @@ void sreg_run(string scalar yv, string scalar dv, string scalar sv,
     string scalar gv, string scalar nv, string scalar xv, string scalar sample,
     real scalar hc, real scalar small, real scalar k)
 {
-    real matrix X, agg, xx
-    real colvector Y,D,S,G,N,u,ix
+    real matrix X, agg, xx, info
+    real colvector Y,D,S,G,N,u,ix, ordering
     real scalar n,j,p,cl,changed
     struct sreg_result scalar out
     Y=st_data(.,yv,sample); D=st_data(.,dv,sample); n=rows(Y)
@@ -295,9 +313,14 @@ void sreg_run(string scalar yv, string scalar dv, string scalar sv,
             if(min(N)<=0) sreg_fail("Cluster sizes must be positive.")
         }
         else sreg_warn("Cluster sizes have not been provided; using the number of available observations in every cluster.")
-        u=uniqrows(sort(G,1)); agg=J(rows(u),4+p,.); changed=0
+        // Stable grouping avoids scanning every observation for each cluster.
+        ordering=order((G,(1::n)),(1,2))
+        Y=Y[ordering]; S=S[ordering]; D=D[ordering]; G=G[ordering]
+        N=N[ordering]; X=X[ordering,.]
+        info=panelsetup(G,1); u=G[info[,1]]
+        agg=J(rows(u),4+p,.); changed=0
         for(j=1;j<=rows(u);j++) {
-            ix=selectindex(G:==u[j])
+            ix=(info[j,1]::info[j,2])
             if(min(S[ix])!=max(S[ix]) | min(D[ix])!=max(D[ix]) | min(N[ix])!=max(N[ix])) sreg_fail("The values for S, D, and Ng must be consistent within each cluster.")
             agg[j,1..4]=(mean(Y[ix]),S[ix[1]],D[ix[1]],(nv=="" ? rows(ix) : N[ix[1]]))
             if(p) {
