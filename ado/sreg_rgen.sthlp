@@ -3,7 +3,9 @@
 {title:sreg_rgen — Generate stratified randomized experiments}
 
 {p 4 4 2}
-Native Stata/Mata counterpart of R {cmd:sreg.rgen}, reference version 2.1.0.
+Generates observed outcomes, treatment assignments, strata indicators,
+cluster identifiers, cluster sizes and covariates for stratified randomized
+experiments under covariate-adaptive randomization (CAR).
 
 {title:Syntax}
 {p 8 8 2}
@@ -28,14 +30,14 @@ which defaults to 50 and must be a multiple of 10.
 {cmd:tau()} lists active treatment effects; default 0 (one active arm).
 Control is always coded 0. {cmd:gamma()} supplies exactly three coefficients,
 default .4 .2 1, on the stratification variable and two covariates.
-{cmd:nocovariates} omits x_1 and x_2. As in R, it also removes their outcome
+{cmd:nocovariates} omits x_1 and x_2. It also removes their outcome
 contribution for individual assignment, but only hides them for clusters.
 
 {p 4 4 2}
 {cmd:smallstrata} sorts assignment units by the latent stratification variable
 and makes consecutive blocks of {cmd:k()} units (default 3). {cmd:n()} must
 be divisible by k. {cmd:treatsizes()} specifies integer arm counts, control
-first, summing to k. For this design the R default is {cmd:1 1 1}; with one
+first, summing to k. For this design the default is {cmd:1 1 1}; with one
 active arm, explicitly specify, for example, {cmd:treatsizes(2 1)}.
 
 {p 4 4 2}
@@ -56,8 +58,7 @@ matrix that replaces tau within each stratum; it does not add to tau.
 
 {p 4 4 2}
 {cmd:clear} permits replacing data in memory. Failed validation preserves data.
-Use {cmd:set seed} for reproducibility. R and Stata use different random streams;
-the same numerical seed does not produce identical data across languages.
+Use {cmd:set seed} for reproducibility.
 
 {title:Generated variables}
 {p 4 4 2}
@@ -78,11 +79,7 @@ large, small, or mixed. Estimation is a separate call to {help sreg}.
 {phang}{cmd:sreg_rgen, n(120) tau(.2 .8) smallstrata clear}
 {phang}{cmd:sreg Y x_1 x_2, treatment(D) strata(S) cluster(G_id) clustersize(Ng) smallstrata k(3)}
 
-{title:Reference adaptations}
+{title:Estimation requirements}
 {p 4 4 2}
-The minimum cluster stratification value is included in the first bin (R leaves
-it outside all bins). Individual small strata support omitted covariates.
-Ng is reported once; R small-cluster output can contain a duplicate Ng column.
-Singleton allocations use their specified arm without R sample() scalar semantics.
 Small or sparse generated designs need not satisfy the estimator's stronger
 cell-size and even-number-of-matched-strata requirements.

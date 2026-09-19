@@ -6,7 +6,7 @@
 
 The `sreg` package for **Stata** estimates average treatment effects (ATEs) in stratified randomized experiments. It supports matched pairs, $k$-tuple designs, large strata of potentially unequal sizes, and designs that combine small and large strata. Estimation accommodates multiple treatments, individual- and cluster-level treatment assignment, and optimal linear covariate adjustment using baseline characteristics.
 
-The package implements the estimators and standard errors available in the [R version of sreg](https://github.com/jutrifonov/sreg), using native Stata and Mata.
+The package is implemented entirely in Stata and Mata.
 
 **Dependencies:** No additional packages required.
 
@@ -16,15 +16,17 @@ The package implements the estimators and standard errors available in the [R ve
 
 ## Authors
 
-- Juri Trifonov — jutrifonov@u.northwestern.edu
-- Yuehao Bai — yuehao.bai@usc.edu
-- Azeem Shaikh — amshaikh@uchicago.edu
-- Max Tabord-Meehan — m.tabordmeehan@utoronto.ca
+- Juri Trifonov jutrifonov@u.northwestern.edu
+
+- Yuehao Bai yuehao.bai@usc.edu
+
+- Azeem Shaikh amshaikh@uchicago.edu
+
+- Max Tabord-Meehan m.tabordmeehan@utoronto.ca
 
 ## Supplementary files
 
 - Command documentation: `help sreg`, `help sregplot`, and `help sreg_rgen` after installation.
-- Estimator formulas for large, small, and mixed strata under individual- and cluster-level assignment: [Download PDF](https://github.com/jutrifonov/sreg/raw/main/.github/assets/sreg-estimator-formulas.pdf).
 
 ## Installation
 
@@ -39,7 +41,7 @@ Access to the repository is currently required to download it. Once installed, t
 
 ## Try the package
 
-The [hands-on do-file](examples/try_sreg.do) installs the package, downloads its example data, and runs individual and clustered examples with large, small, and mixed strata. It also reproduces the R package's Peru empirical example using the included **AEJapp data (215 observations, 62 variables)**.
+The [hands-on do-file](examples/try_sreg.do) installs the package, downloads its example data, and runs individual and clustered examples with large, small, and mixed strata. It also demonstrates the Peru empirical application using the included **AEJapp data (215 observations, 62 variables)**.
 
 From the downloaded repository folder in Stata:
 
@@ -123,10 +125,9 @@ Run `sreg` without arguments to display the estimation table again. See `help sr
 
 ## Empirical illustration
 
-The package includes the same `AEJapp` dataset used by the R version of
-`sreg`. The data come from Chong et al. (2016), who studied iron deficiency
-and educational attainment among school-age children in Peru. The Stata file
-contains all 215 observations and 62 variables from the R package.
+The package includes the AEJapp dataset from Chong et al. (2016), who studied
+iron deficiency and educational attainment among school-age children in Peru.
+The dataset contains 215 observations and 62 variables.
 
 The example below uses:
 
@@ -443,9 +444,21 @@ For custom treatment allocations and stratum-specific effects, see `help sreg_rg
 
 ## References
 
-The estimators follow Bugni, Canay, and Shaikh (2018); Bugni, Canay, Shaikh, and Tabord-Meehan; Jiang, Linton, Tang, and Zhang; Bai, Jiang, Romano, Shaikh, and Zhang (2024); Bai (2022); Bai, Romano, and Shaikh (2022); Liu (2024); and Cytrynbaum (2024).
+Bugni, F. A., Canay, I. A., and Shaikh, A. M. (2018). Inference Under Covariate-Adaptive Randomization. *Journal of the American Statistical Association*, 113(524), 1784–1796, doi:10.1080/01621459.2017.1375934.
 
-See the [R package references](https://github.com/jutrifonov/sreg#references) and the [estimator formulas](https://github.com/jutrifonov/sreg/raw/main/.github/assets/sreg-estimator-formulas.pdf) for bibliographic details and mathematical expressions.
+Bugni, F., Canay, I., Shaikh, A., and Tabord-Meehan, M. (2024+). Inference for Cluster Randomized Experiments with Non-ignorable Cluster Sizes. *Forthcoming in the Journal of Political Economy: Microeconomics*, doi:10.48550/arXiv.2204.08356.
+
+Jiang, L., Linton, O. B., Tang, H., and Zhang, Y. (2023+). Improving Estimation Efficiency via Regression-Adjustment in Covariate-Adaptive Randomizations with Imperfect Compliance. *Forthcoming in Review of Economics and Statistics*, doi:10.48550/arXiv.2204.08356.
+
+Bai, Y., Jiang, L., Romano, J. P., Shaikh, A. M., and Zhang, Y. (2024). Covariate adjustment in experiments with matched pairs. *Journal of Econometrics*, 241(1), doi:10.1016/j.jeconom.2024.105740.
+
+Bai, Y. (2022). Optimality of Matched-Pair Designs in Randomized Controlled Trials. *American Economic Review*, 112(12), doi:10.1257/aer.20201856.
+
+Bai, Y., Romano, J. P., and Shaikh, A. M. (2022). Inference in Experiments With Matched Pairs. *Journal of the American Statistical Association*, 117(540), doi:10.1080/01621459.2021.1883437.
+
+Liu, J. (2024). Inference for Two-stage Experiments under Covariate-Adaptive Randomization. doi:10.48550/arXiv.2301.09016.
+
+Cytrynbaum, M. (2024). Covariate Adjustment in Stratified Experiments. *Quantitative Economics*, 15(4), 971–998, doi:10.3982/QE2475
 
 ## License
 

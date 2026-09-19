@@ -10,7 +10,7 @@
 
   This file installs sreg, replaces data in memory, and writes a text log,
   a results table (.dta and .csv), saved estimates (.ster), and SVG plots.
-  R and Python are not needed. Running again replaces these example outputs.
+  No additional packages are needed. Running again replaces these example outputs.
 */
 version 14.2
 clear all
@@ -151,14 +151,14 @@ matrix inferred = e(b)
 matrix list supplied
 matrix list inferred
 
-* 4. Empirical example: exactly the AEJapp dataset bundled with R sreg.
+* 4. Empirical example: Peru iron supplementation study.
 * Chong et al. (2016), Iron Deficiency and Schooling Attainment in Peru.
 * Dataset source and variable provenance: help sreg_aejapp.
 * The included data contain all 215 observations and 62 original variables.
 use `"`output_dir'/sreg_aejapp.dta"', clear
 assert _N == 215
 describe
-* The R example recodes original treatment 3 as the control (0).
+* Recode treatment 3 as the control (0).
 generate byte D = cond(treatment == 3, 0, treatment)
 tabulate D class_level
 list gradesq34 D class_level pills_taken age_months in 1/10
@@ -167,13 +167,13 @@ sreg gradesq34, treatment(D) strata(class_level)
 sreg_demo_collect results empirical_unadjusted
 estimates store empirical_unadjusted
 estimates save `"`output_dir'/empirical_unadjusted.ster"', replace
-* R README: estimates approximately -0.05113 and 0.40903.
+* Expected estimates approximately -0.05113 and 0.40903.
 
 sreg gradesq34 pills_taken age_months, treatment(D) strata(class_level)
 sreg_demo_collect results empirical_adjusted
 estimates store empirical_adjusted
 estimates save `"`output_dir'/empirical_adjusted.ster"', replace
-* R README: adjusted estimates approximately -0.02862 and 0.34609.
+* Expected adjusted estimates approximately -0.02862 and 0.34609.
 matrix empirical_b = e(b)
 matrix empirical_V = e(V)
 matrix empirical_beta = e(beta)

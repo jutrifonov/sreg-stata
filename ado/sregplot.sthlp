@@ -20,10 +20,9 @@ the estimate and standard error. Intervals are calculated from {cmd:e(b)} and
 are preserved. Labels must be quoted separately and match the number of arms.
 
 {p 4 4 2}
-This is the native Stata graphical counterpart of R's {cmd:plot.sreg}; it
-returns a Stata graph, not a ggplot object. Stata color/symbol/size styles
-replace R aesthetic arguments. The CI color is a single Stata color rather
-than an R viridis scale or gradient. The default zero line can be suppressed.
+Customize the graph using Stata color, symbol and size styles.
+{opt cicolor()} specifies the confidence-interval color.
+{opt nozeroline} suppresses the dashed vertical line at zero.
 
 {phang2}{cmd:. sregplot, treatmentlabels("Program A" "Program B") level(90)}{p_end}
 {phang2}{cmd:. graph export effects.svg, replace}{p_end}

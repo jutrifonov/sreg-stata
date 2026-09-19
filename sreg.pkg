@@ -1,6 +1,6 @@
 v 3
 d sreg for Stata: native estimators for stratified randomized experiments
-d Version 0.1.0; R reference 2.1.0 (fe1b662)
+d Version 0.1.0
 d Requires Stata 14.2 or newer
 f ado/sreg.ado
 f ado/sreg_mata.mata
