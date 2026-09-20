@@ -1,4 +1,4 @@
-*! sreg 0.1.0 10sep2026 -- native Stata/Mata port of R 2.1.0
+*! sreg 0.1.0 10sep2026 -- Stratified Randomized Experiments
 program define sreg, eclass sortpreserve
     version 14.2
     local cmdline `"sreg `0'"'

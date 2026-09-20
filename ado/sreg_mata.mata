@@ -1,6 +1,6 @@
 version 14.2
 mata:
-/* Native implementation of sreg R 2.1.0, fe1b662.
+/* Native Stata/Mata estimator implementation.
    Rows entering the numerical routines are assignment units. T is the
    expanded cluster outcome and N the represented size (both individual
    quantities when N=1). No R/Python calls are made by these routines. */

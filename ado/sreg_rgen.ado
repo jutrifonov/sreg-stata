@@ -1,4 +1,4 @@
-*! sreg_rgen 0.1.0 -- native generator corresponding to R sreg 2.1.0
+*! sreg_rgen 0.1.0 -- Generate stratified randomized experiments
 program define sreg_rgen, rclass
     version 14.2
     syntax , N(integer) [NMAX(integer 50) STRata(integer 10) ///
