@@ -1,47 +1,52 @@
 /*
   SREG: hands-on walkthrough (Stata 14.2+)
 
-  Save any data you are working on before running this file.
-  Open Stata in the downloaded sreg-stata folder and run:
-      do examples/try_sreg.do
-  Or supply the package folder explicitly:
-      do "/path/to/sreg-stata/examples/try_sreg.do" "/path/to/sreg-stata"
-  Optional second argument: output folder (must have an existing parent).
+  Choose ONE installation route in Stata before running this file.
 
-  This file installs sreg, replaces data in memory, and writes a text log,
-  a results table (.dta and .csv), saved estimates (.ster), and SVG plots.
-  No additional packages are needed. Running again replaces these example outputs.
+  1. Stable release from SSC (available after SSC publication):
+      ssc install sreg, replace
+      ssc install sreg, all replace
+
+  2. Development version from GitHub (available now):
+      net install sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
+      net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
+
+  Both routes download try_sreg.do and sreg_aejapp.dta to the current folder.
+  Run from that folder in a fresh Stata session:
+      do try_sreg.do
+  Optional argument: output folder (its parent must already exist):
+      do try_sreg.do "/path/to/output"
+
+  This walkthrough uses the installed package and the downloaded dataset.
+  It does not reinstall the package or require a repository checkout.
+  Save your data first: it replaces data in memory and creates a log, result
+  tables, saved estimates and SVG plots. Rerunning replaces those outputs.
 */
 version 14.2
 clear all
 set more off
 set linesize 100
 set rng mt64
-args package_dir output_dir
-if `"`package_dir'"' == "" local package_dir `"`c(pwd)'"'
-capture confirm file `"`package_dir'/sreg.pkg"'
-if _rc {
-    display as error "Supply the downloaded package folder as the first argument (see instructions above)."
-    exit 601
-}
-local starting_dir `"`c(pwd)'"'
-quietly cd `"`package_dir'"'
-local package_dir `"`c(pwd)'"'
-quietly cd `"`starting_dir'"'
-if `"`output_dir'"' == "" local output_dir `"`package_dir'/examples/output"'
-capture mkdir `"`output_dir'"'
-capture log close sreg_walkthrough
-log using `"`output_dir'/sreg_walkthrough.log"', text replace name(sreg_walkthrough)
+args output_dir
 
-* 1. Install the native package from the downloaded repository.
-net install sreg, from(`"`package_dir'"') replace
+* 1. Check the installed commands and downloaded example data.
 which sreg
 which sreg_rgen
-* Stata installs commands with net install; net get downloads example data.
+which sregplot
+local data_file `"`c(pwd)'/sreg_aejapp.dta"'
+capture confirm file `"`data_file'"'
+if _rc {
+    display as error "Download the example data using one of the routes above, then run from that folder."
+    exit 601
+}
+if `"`output_dir'"' == "" local output_dir `"`c(pwd)'/sreg_output"'
+capture mkdir `"`output_dir'"'
+local starting_dir `"`c(pwd)'"'
 quietly cd `"`output_dir'"'
 local output_dir `"`c(pwd)'"'
-net get sreg, from(`"`package_dir'"') replace
 quietly cd `"`starting_dir'"'
+capture log close sreg_walkthrough
+log using `"`output_dir'/sreg_walkthrough.log"', text replace name(sreg_walkthrough)
 * Interactive documentation: help sreg | help sreg_rgen | help sregplot
 
 * Collect individual treatment estimates after each model.
@@ -155,7 +160,7 @@ matrix list inferred
 * Chong et al. (2016), Iron Deficiency and Schooling Attainment in Peru.
 * Dataset source and variable provenance: help sreg_aejapp.
 * The included data contain all 215 observations and 62 original variables.
-use `"`output_dir'/sreg_aejapp.dta"', clear
+use `"`data_file'"', clear
 assert _N == 215
 describe
 * Recode treatment 3 as the control (0).

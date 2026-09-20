@@ -30,26 +30,55 @@ The package is implemented entirely in Stata and Mata.
 
 ## Installation
 
-Download this repository using **Code → Download ZIP**, then unzip it. In Stata, install from the extracted folder, replacing the path below with its location:
+### Stable release from SSC
+
+After the package is published on SSC, install it with:
 
 ```stata
-net install sreg, from("/path/to/sreg-stata") replace
+ssc install sreg, replace
 help sreg
 ```
 
-Access to the repository is currently required to download it. Once installed, the package runs entirely within Stata.
+The SSC release is not yet available; use the GitHub route below for now.
+
+### Development version from GitHub
+
+```stata
+net install sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
+help sreg
+```
+
+Use a fresh Stata session after switching versions.
 
 ## Try the package
 
-The [hands-on do-file](examples/try_sreg.do) installs the package, downloads its example data, and runs individual and clustered examples with large, small, and mixed strata. It also demonstrates the Peru empirical application using the included **AEJapp data (215 observations, 62 variables)**.
+The [hands-on do-file](examples/try_sreg.do) demonstrates individual and clustered
+experiments with large, small, and mixed strata, and the Peru empirical application
+using the included AEJapp data (215 observations, 62 variables).
 
-From the downloaded repository folder in Stata:
+Choose a writable working folder in Stata. Download the examples from the same
+source used to install the package:
 
 ```stata
-do examples/try_sreg.do
+* SSC release (after publication):
+ssc install sreg, all replace
 ```
 
-The walkthrough saves tables, estimates, plots, and a log in `examples/output/`. Save any work in memory before running it. For the dataset's source and empirical specification, see `help sreg_aejapp` after installation.
+```stata
+* GitHub development version:
+net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
+```
+
+Then run the downloaded file from that folder:
+
+```stata
+do try_sreg.do
+```
+
+Save your data first. The walkthrough replaces data in memory and saves tables,
+estimates, plots, and a log in `sreg_output/` under the current folder.
+It uses the installed package without reinstalling it. For the dataset's source
+and empirical specification, see `help sreg_aejapp`.
 
 ## Command: `sreg`
 
@@ -141,22 +170,22 @@ The example below uses:
 
 ### Load the data
 
-After downloading the repository, replace `/path/to/sreg-stata` with the
-complete location of the package on your computer. `net get` copies the
-example dataset into Stata's current working folder, and `use` loads it into
-memory:
+Download the example files using the same installation source as above:
 
 ```stata
-net get sreg, from("/path/to/sreg-stata") replace
-use "sreg_aejapp.dta", clear
+* SSC release (after publication):
+ssc install sreg, all replace
 ```
 
-Stata 14.2 requires the complete folder path here; `from(".")` is not
-accepted. You can see the current working folder with `pwd`. Alternatively,
-load the file directly:
+```stata
+* GitHub development version:
+net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
+```
+
+Both routes place the dataset in the current working folder. Load it with:
 
 ```stata
-use "/path/to/sreg-stata/data/sreg_aejapp.dta", clear
+use "sreg_aejapp.dta", clear
 ```
 
 You can inspect the complete dataset with `describe`. To look only at the

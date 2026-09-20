@@ -12,3 +12,4 @@ f ado/sreg_rgen.mata
 f ado/sreg_rgen.sthlp
 f data/sreg_aejapp.dta
 f ado/sreg_aejapp.sthlp
+f examples/try_sreg.do

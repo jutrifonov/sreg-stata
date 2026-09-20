@@ -162,11 +162,14 @@ The dataset contains 215 observations and 62 variables.
 See {help sreg_aejapp} for the data description and source.
 
 {p 4 4 2}
-Replace /path/to/sreg-stata with the complete path to the downloaded package
-folder. The following commands copy the data to the current working folder
-and load them. Save any data in memory before using {cmd:clear}.
+Choose the download route matching your installed package. The following
+commands copy the data to the current working folder and load them.
+Save any data in memory before using {cmd:clear}.
 
-{phang2}{cmd:. net get sreg, from("/path/to/sreg-stata") replace}{p_end}
+{p 4 4 2}SSC release (after publication):{p_end}
+{phang2}{cmd:. ssc install sreg, all replace}{p_end}
+{p 4 4 2}GitHub development version (available now):{p_end}
+{phang2}{cmd:. net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace}{p_end}
 {phang2}{cmd:. use sreg_aejapp.dta, clear}{p_end}
 {phang2}{cmd:. describe gradesq34 treatment class_level pills_taken age_months}{p_end}
 {phang2}{cmd:. generate byte D = cond(treatment == 3, 0, treatment)}{p_end}

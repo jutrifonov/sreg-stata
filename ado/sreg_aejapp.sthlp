@@ -7,11 +7,14 @@ study of iron deficiency and schooling attainment in Peru by Chong et al.
 (2016). It is included with the package in Stata format.
 
 {title:Download and load the included data}
-{phang2}{cmd:. net get sreg, from("/path/to/sreg-stata") replace}{p_end}
+{p 4 4 2}SSC release (after publication):{p_end}
+{phang2}{cmd:. ssc install sreg, all replace}{p_end}
+{p 4 4 2}GitHub development version (available now):{p_end}
+{phang2}{cmd:. net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace}{p_end}
 {phang2}{cmd:. use sreg_aejapp.dta, clear}{p_end}
 
-{p 4 4 2}Replace the path with the downloaded package folder. {cmd:net get}
-places the example dataset in the current working directory.
+{p 4 4 2}Choose the route matching your installed package. Both routes place the
+example dataset and {cmd:try_sreg.do} in the current working directory.
 
 {title:Empirical illustration}
 {phang2}{cmd:. generate byte D = cond(treatment == 3, 0, treatment)}{p_end}
@@ -36,4 +39,4 @@ Replication data distributed by the American Economic Association and ICPSR:
 
 
 {p 4 4 2}
-See examples/try_sreg.do in the Stata repository for the complete walkthrough.
+Run {cmd:do try_sreg.do} from the download folder for the complete walkthrough.
