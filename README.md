@@ -4,6 +4,8 @@
 ![Stata](https://img.shields.io/badge/Stata-14.2%2B-blue?style=flat&labelColor=2A2523)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange?style=flat&labelColor=2A2523)](LICENSE)
 
+[Project Website](https://sreg-project.github.io)
+
 The `sreg` package for **Stata** estimates average treatment effects (ATEs) in stratified randomized experiments. It supports matched pairs, $k$-tuple designs, large strata of potentially unequal sizes, and designs that combine small and large strata. Estimation accommodates multiple treatments, individual- and cluster-level treatment assignment, and optimal linear covariate adjustment using baseline characteristics.
 
 The package is implemented entirely in Stata and Mata.
