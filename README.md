@@ -1,6 +1,6 @@
 # sreg: Stratified Randomized Experiments (Stata® Edition)<br><a href="https://github.com/jutrifonov/sreg-stata"><img src="docs/figures/sreg-logo.png" alt="sreg logo" align="right" height="250" /></a>
 
-![version](https://img.shields.io/badge/sreg-v.0.1.0-green?style=flat&logo=github&labelColor=2A2523)
+![version](https://img.shields.io/badge/sreg-v.1.0.0-green?style=flat&logo=github&labelColor=2A2523)
 ![Stata](https://img.shields.io/badge/Stata-14.2%2B-blue?style=flat&labelColor=2A2523)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange?style=flat&labelColor=2A2523)](LICENSE)
 
@@ -8,7 +8,9 @@
 
 The `sreg` package for **Stata** estimates average treatment effects (ATEs) in stratified randomized experiments. It supports matched pairs, $k$-tuple designs, large strata of potentially unequal sizes, and designs that combine small and large strata. Estimation accommodates multiple treatments, individual- and cluster-level treatment assignment, and optimal linear covariate adjustment using baseline characteristics.
 
-The package is implemented entirely in Stata and Mata.
+This is the Stata version of the [R package sreg](https://github.com/jutrifonov/sreg), implemented entirely in Stata and Mata. Using it does not require R.
+
+**Project website:** [sreg-project.github.io](https://sreg-project.github.io) · **Stata source:** [GitHub](https://github.com/jutrifonov/sreg-stata)
 
 **Dependencies:** No additional packages required.
 
@@ -34,14 +36,14 @@ The package is implemented entirely in Stata and Mata.
 
 ### Stable release from SSC
 
-After the package is published on SSC, install it with:
+The standard installation route for the public release is SSC:
 
 ```stata
 ssc install sreg, replace
 help sreg
 ```
 
-The SSC release is not yet available; use the GitHub route below for now.
+These SSC commands become available when the submission is published. Until then, use the GitHub development installation below.
 
 ### Development version from GitHub
 

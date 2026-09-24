@@ -1,3 +1,4 @@
 v 3
 d sreg for Stata
+d Website: https://sreg-project.github.io
 p sreg Native Stata/Mata estimators for stratified randomized experiments

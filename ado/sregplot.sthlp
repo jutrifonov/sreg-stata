@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1.0 10sep2026}{...}
+{* *! version 1.0.0 24sep2026}{...}
 {title:sregplot — Plot treatment effects and confidence intervals}
 
 {p 8 12 2}
@@ -29,3 +29,16 @@ Customize the graph using Stata color, symbol and size styles.
 {phang2}{cmd:. sregplot, cicolor(navy) msymbol(O) nogrid saving(effects.gph, replace)}{p_end}
 
 {p 4 4 2}See {help sreg}, {help graph export}, {help colorstyle}.{p_end}
+
+{title:Project and software}
+
+{p 4 4 2}
+This is the Stata version of the R package sreg, implemented natively in
+Stata and Mata. R is not required to use this package.
+
+{p 4 4 2}
+{browse "https://sreg-project.github.io":Project website}
+{break}
+{browse "https://github.com/jutrifonov/sreg-stata":Stata GitHub repository}
+{break}
+{browse "https://github.com/jutrifonov/sreg":R package}

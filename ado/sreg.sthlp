@@ -1,9 +1,21 @@
 {smcl}
-{* *! version 0.1.0 10sep2026}{...}
+{* *! version 1.0.0 24sep2026}{...}
 {title:Title}
 
 {p 4 4 2}
 {cmd:sreg} {hline 2} Stratified Randomized Experiments
+
+{title:Installation}
+
+{p 4 4 2}
+Install the public release from SSC (once published):
+{p_end}
+{phang2}{cmd:. ssc install sreg, replace}{p_end}
+
+{p 4 4 2}
+Alternatively, install the development version from GitHub:
+{p_end}
+{phang2}{cmd:. net install sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace}{p_end}
 
 {title:Syntax}
 
@@ -266,8 +278,18 @@ Liu, J. (2024). Inference for Two-stage Experiments under Covariate-Adaptive Ran
 {p 4 4 2}
 Cytrynbaum, M. (2024). Covariate Adjustment in Stratified Experiments. {it:Quantitative Economics}, 15(4), 971–998, doi:10.3982/QE2475
 
+{title:Project and software}
+
 {p 4 4 2}
-{browse "https://github.com/jutrifonov/sreg-stata":Package repository}
+This is the Stata version of the R package sreg, implemented natively in
+Stata and Mata. R is not required to use this package.
+
+{p 4 4 2}
+{browse "https://sreg-project.github.io":Project website}
+{break}
+{browse "https://github.com/jutrifonov/sreg-stata":Stata GitHub repository}
+{break}
+{browse "https://github.com/jutrifonov/sreg":R package}
 
 {title:Also see}
 {p 4 4 2}{help sregplot}, {help sreg_rgen}, {help lincom}, {help test}, {help estimates}{p_end}

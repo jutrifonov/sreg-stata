@@ -1,13 +1,15 @@
 /*
-  SREG: hands-on walkthrough (Stata 14.2+)
+  SREG 1.0.0: hands-on walkthrough (Stata 14.2+)
+  Project website: https://sreg-project.github.io
+  Stata version of the R package sreg; no R installation is required.
 
   Choose ONE installation route in Stata before running this file.
 
-  1. Stable release from SSC (available after SSC publication):
+  1. Recommended: public release from SSC (once published):
       ssc install sreg, replace
       ssc install sreg, all replace
 
-  2. Development version from GitHub (available now):
+  2. Alternative: development version from GitHub:
       net install sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
       net get sreg, from("https://raw.githubusercontent.com/jutrifonov/sreg-stata/main") replace
 

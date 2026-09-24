@@ -1,4 +1,4 @@
-*! sregplot 0.1.0 -- native coefficient and confidence interval plot
+*! sregplot 1.0.0 24sep2026 -- native coefficient and confidence interval plot
 program define sregplot
     version 14.2
     if "`e(cmd)'" != "sreg" error 301

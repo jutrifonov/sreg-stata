@@ -1,4 +1,5 @@
 {smcl}
+{* *! version 1.0.0 24sep2026}{...}
 {title:sreg_aejapp — Peru iron supplementation example data}
 
 {p 4 4 2}
@@ -40,3 +41,16 @@ Replication data distributed by the American Economic Association and ICPSR:
 
 {p 4 4 2}
 Run {cmd:do try_sreg.do} from the download folder for the complete walkthrough.
+
+{title:Project and software}
+
+{p 4 4 2}
+This is the Stata version of the R package sreg, implemented natively in
+Stata and Mata. R is not required to use this package.
+
+{p 4 4 2}
+{browse "https://sreg-project.github.io":Project website}
+{break}
+{browse "https://github.com/jutrifonov/sreg-stata":Stata GitHub repository}
+{break}
+{browse "https://github.com/jutrifonov/sreg":R package}

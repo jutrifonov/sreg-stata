@@ -1,4 +1,4 @@
-*! sreg_rgen 0.1.0 -- Generate stratified randomized experiments
+*! sreg_rgen 1.0.0 24sep2026 -- Generate stratified randomized experiments
 program define sreg_rgen, rclass
     version 14.2
     syntax , N(integer) [NMAX(integer 50) STRata(integer 10) ///

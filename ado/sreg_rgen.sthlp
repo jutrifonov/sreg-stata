@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1.0}
+{* *! version 1.0.0 24sep2026}{...}
 {title:sreg_rgen — Generate stratified randomized experiments}
 
 {p 4 4 2}
@@ -83,3 +83,16 @@ large, small, or mixed. Estimation is a separate call to {help sreg}.
 {p 4 4 2}
 Small or sparse generated designs need not satisfy the estimator's stronger
 cell-size and even-number-of-matched-strata requirements.
+
+{title:Project and software}
+
+{p 4 4 2}
+This is the Stata version of the R package sreg, implemented natively in
+Stata and Mata. R is not required to use this package.
+
+{p 4 4 2}
+{browse "https://sreg-project.github.io":Project website}
+{break}
+{browse "https://github.com/jutrifonov/sreg-stata":Stata GitHub repository}
+{break}
+{browse "https://github.com/jutrifonov/sreg":R package}

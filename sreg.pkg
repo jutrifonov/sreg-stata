@@ -1,6 +1,11 @@
 v 3
 d sreg for Stata: native estimators for stratified randomized experiments
-d Version 0.1.0
+d Version 1.0.0
+d Distribution-Date: 20260924
+d Stata version of the R package sreg; implemented natively in Stata/Mata
+d Website: https://sreg-project.github.io
+d Stata source: https://github.com/jutrifonov/sreg-stata
+d R package: https://github.com/jutrifonov/sreg
 d Requires Stata 14.2 or newer
 f ado/sreg.ado
 f ado/sreg_mata.mata

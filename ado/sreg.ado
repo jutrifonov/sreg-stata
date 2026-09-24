@@ -1,4 +1,4 @@
-*! sreg 0.1.0 10sep2026 -- Stratified Randomized Experiments
+*! sreg 1.0.0 24sep2026 -- Stratified Randomized Experiments
 program define sreg, eclass sortpreserve
     version 14.2
     local cmdline `"sreg `0'"'
