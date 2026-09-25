@@ -16,7 +16,7 @@ real colvector sreg_rg_strata(real colvector w, real scalar h, real scalar clust
     hi = cluster ? max(w) : 2.25
     if (hi == lo) return(J(rows(w),1,1))
     s = ceil((w:-lo):/(hi-lo)*h)
-    // Include the minimum in the first bin; R leaves this cluster unassigned.
+    // Include the minimum matching value in the first stratum.
     s = rowmax((s,J(rows(w),1,1)))
     return(rowmin((s,J(rows(w),1,h))))
 }

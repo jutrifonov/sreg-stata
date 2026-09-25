@@ -50,6 +50,32 @@ Inference uses the standard normal distribution. The output reports ATE
 estimates, standard errors, z statistics, p-values and asymptotic confidence
 intervals (95% by default).
 
+{title:Arguments}
+
+{phang}
+{it:outcome} is the required numeric variable containing the observed outcome
+for each observation. Write its variable name immediately after {cmd:sreg}.
+
+{phang}
+{it:covariates} is an optional list of numeric variables used for linear
+covariate adjustment. Write their names after the outcome and before the
+comma. Factor variables and interactions are supported. Omit this list to
+estimate treatment effects without covariate adjustment. For cluster-level
+assignment, individual-level covariates are averaged within clusters.
+
+{p 4 4 2}
+Pass variable names from the dataset currently in memory. For example:
+
+{phang2}{cmd:. sreg gradesq34 pills_taken age_months, treatment(D) strata(class_level)}{p_end}
+
+{p 4 4 2}
+Here, {cmd:gradesq34} is the outcome, {cmd:pills_taken} and {cmd:age_months}
+are covariates, {cmd:D} identifies treatment assignment, and
+{cmd:class_level} identifies the randomization strata.
+Without covariate adjustment, the command is:
+
+{phang2}{cmd:. sreg gradesq34, treatment(D) strata(class_level)}{p_end}
+
 {title:Options}
 
 {phang}

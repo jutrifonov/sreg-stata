@@ -3,7 +3,7 @@ mata:
 /* Native Stata/Mata estimator implementation.
    Rows entering the numerical routines are assignment units. T is the
    expanded cluster outcome and N the represented size (both individual
-   quantities when N=1). No R/Python calls are made by these routines. */
+   quantities when N=1). */
 struct sreg_result {
     real rowvector b
     real matrix V, beta, betalarge, bsmall, Vsmall, bbig, Vbig
@@ -60,7 +60,7 @@ real scalar sreg_modal(real colvector sizes, real scalar k)
     return(modal)
 }
 
-// Common classifier used both by estimation and its direct native tests.
+// Classify strata by size for estimator selection.
 real colvector sreg_classify(real colvector sizes, real scalar k)
 {
     real scalar modal
@@ -152,8 +152,7 @@ struct sreg_result scalar sreg_large(real colvector T, real colvector S,
     return(out)
 }
 
-/* Bilinear paired-strata variance. On the diagonal this is exactly the
-   R arm-sum formula; polarization supplies cross-treatment covariances. */
+/* Bilinear paired-strata variance and cross-treatment covariances. */
 real scalar sreg_small_cross(real colvector U, real colvector V,
     real colvector S, real colvector D, real scalar fac)
 {
@@ -167,7 +166,6 @@ real scalar sreg_small_cross(real colvector U, real colvector V,
         ur=select(U,D:==r); vr=select(V,D:==r)
         counts[r+1]=rows(ur)/h; gu[r+1]=mean(ur); gv[r+1]=mean(vr)
         // Aggregate each treatment's strata once, preserving within-cell order.
-        // The previous implementation rescanned all observations for every cell.
         ix=selectindex(D:==r)
         grouped=sort((S[ix],U[ix],V[ix],ix),(1,4))
         info=panelsetup(grouped,1)
