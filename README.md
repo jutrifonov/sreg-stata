@@ -42,9 +42,6 @@ The standard installation route for the public release is SSC:
 ssc install sreg, replace
 help sreg
 ```
-
-These SSC commands become available when the submission is published. Until then, use the GitHub development installation below.
-
 ### Development version from GitHub
 
 ```stata
